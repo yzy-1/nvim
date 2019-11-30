@@ -15,7 +15,7 @@ filetype on
 filetype indent on
 filetype plugin on
 filetype plugin indent on
-" Prevent incorrect backgroung rendering
+" Prevent incorrect background rendering
 let &t_ut=''
 
 " === Main code display ===
@@ -30,7 +30,7 @@ set novisualbell
 set showmatch
 set showcmd
 set wildmenu
-set scrolloff=5
+set scrolloff=0
 set tw=0
 set indentexpr=
 set backspace=indent,eol,start
@@ -105,22 +105,29 @@ noremap <LEADER><CR> :nohlsearch<CR>
 noremap # *zz
 noremap 1 #zz
 
+" Use <Leader><Space> to select one word
+nnoremap <LEADER><Space> viw
+
 " Goto next word
 noremap n w
 noremap N b
 
-" Fast move keymap
+" Move one screen
+noremap J <C-f>
+noremap K <C-b>
+
+" " Fast move keymap
 noremap H 5h
-noremap J 5j
-noremap K 5k
+" noremap J 5j
+" noremap K 5k
 noremap L 5l
 
 " Remove keymap
-map Q <nop>
-map b <nop>
-map t <nop>
-map s <nop>
-map . <nop>
+noremap Q <nop>
+noremap b <nop>
+noremap t <nop>
+noremap s <nop>
+noremap . <nop>
 
 " Use <LEADER> + hjkl keys for moving the cursor around windows
 noremap <LEADER>h <C-w>h
@@ -151,10 +158,6 @@ nnoremap te :tabe<Space>
 noremap tj :+tabnext<CR>
 noremap tk :-tabnext<CR>
 
-" Buffer keymap
-" noremap bk :bp<CR>
-" noremap bj :bn<CR>
-
 " Move cursor to last position
 noremap <C-i> <C-o>
 noremap <C-o> <C-i>
@@ -179,6 +182,9 @@ tnoremap <ESC><ESC> <C-\><C-n>
 nnoremap e <nop>
 nnoremap src :source $MYVIMRC<CR>
 nnoremap erc :tabe $MYVIMRC<CR>
+
+" Make a new line then paste
+nnoremap <C-p> o<ESC>p
 
 " === Auto fcitx ===
 function! Fcitx2En()
@@ -212,7 +218,7 @@ Plug 'jiangmiao/auto-pairs'
 " Coc
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
-" Formater
+" Format
 Plug 'sbdchd/neoformat'
 
 " Textobj-user
@@ -339,7 +345,7 @@ let g:startify_skiplist = [
   \ '^/tmp',
   \ ]
 let g:startify_bookmarks = [
-  \ '~/.vim/vimrc',
+  \ '~/.config/nvim/init.vim',
   \]
 let g:startify_custom_header = [
   \ '   _____    _ _ _   _                               _               _',
@@ -391,7 +397,7 @@ let g:indentLine_first_char = '│'
 " LeaderF
 let g:Lf_ShortcutF = '<C-f>'
 let g:Lf_ShortcutB = '<C-b>'
-nnoremap <C-f> :LeaderfFunction!<CR>
+nnoremap wt :LeaderfBufTag!<CR>
 let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
 let g:Lf_WorkingDirectoryMode = 'Ac'
 let g:Lf_WindowHeight = 0.30
@@ -410,25 +416,25 @@ nnoremap <silent> wf
 \ :<C-u>Defx -resume -buffer-name=tab`tabpagenr()` -search=`expand('%:p')`<CR>
 
 function! s:defx_mappings() abort
-	" Defx window keyboard mappings
-	setlocal signcolumn=no
-	" 使用 l 打开文件
-	nnoremap <silent><buffer><expr> l defx#do_action('multi', ['drop'])
-	nnoremap <silent><buffer><expr> h defx#do_action('cd', ['..'])
+  " Defx window keyboard mappings
+  setlocal signcolumn=no
+  " 使用 l 打开文件
+  nnoremap <silent><buffer><expr> l defx#do_action('multi', ['drop'])
+  nnoremap <silent><buffer><expr> h defx#do_action('cd', ['..'])
 endfunction
 
 call defx#custom#option('_', {
-	\ 'columns': 'indent:git:icons:filename',
-	\ 'winwidth': 35,
-	\ 'split': 'vertical',
-	\ 'direction': 'topleft',
-	\ 'listed': 1,
-	\ 'show_ignored_files': 0,
-	\ 'root_marker': '≡ ',
-	\ 'ignored_files':
-	\     '.mypy_cache,.pytest_cache,.git,.hg,.svn,.stversions'
-	\   . ',__pycache__,.sass-cache,*.egg-info,.DS_Store,*.pyc,*.swp'
-	\ })
+  \ 'columns': 'indent:git:icons:filename',
+  \ 'winwidth': 35,
+  \ 'split': 'vertical',
+  \ 'direction': 'topleft',
+  \ 'listed': 1,
+  \ 'show_ignored_files': 0,
+  \ 'root_marker': '≡ ',
+  \ 'ignored_files':
+  \     '.mypy_cache,.pytest_cache,.git,.hg,.svn,.stversions'
+  \   . ',__pycache__,.sass-cache,*.egg-info,.DS_Store,*.pyc,*.swp'
+  \ })
 
 autocmd FileType defx call s:defx_mappings()
 
@@ -443,14 +449,14 @@ let g:mkdp_browser = 'chromium'
 let g:mkdp_echo_preview_url = 0
 let g:mkdp_browserfunc = ''
 let g:mkdp_preview_options = {
-    \ 'mkit': {},
-    \ 'katex': {},
-    \ 'uml': {},
-    \ 'maid': {},
-    \ 'disable_sync_scroll': 0,
-    \ 'sync_scroll_type': 'middle',
-    \ 'hide_yaml_meta': 1
-    \ }
+  \ 'mkit': {},
+  \ 'katex': {},
+  \ 'uml': {},
+  \ 'maid': {},
+  \ 'disable_sync_scroll': 0,
+  \ 'sync_scroll_type': 'middle',
+  \ 'hide_yaml_meta': 1
+  \ }
 let g:mkdp_markdown_css = ''
 let g:mkdp_highlight_css = ''
 let g:mkdp_port = ''
@@ -481,4 +487,5 @@ let g:UltiSnipsJumpForwardTrigger=",,"
 
 " Easy motion
 let g:EasyMotion_do_mapping = 0
-nmap ss <Plug>(easymotion-s2)
+vnoremap x <nop>
+map ss <Plug>(easymotion-s2)
