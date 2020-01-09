@@ -682,7 +682,7 @@ if has('gui_running') || has('termguicolors') || &t_Co == 88 || &t_Co == 256
   call <sid>X('jsonNoQuotesError',        s:red1,   '', 'bold' )
   call <sid>X('jsonNumError',             s:red1,   '', 'bold' )
   call <sid>X('jsonString',               s:green,   '', ''        )
-  call <sid>X('jsonBoolean',              s:purple,   '', ''        )
+  call <sid>X('jsonBoolean',              s:orange1,   '', ''        )
   call <sid>X('jsonNumber',               s:orange1,   '', ''        )
   call <sid>X('jsonStringSQError',        s:red1,   '', 'bold' )
   call <sid>X('jsonSemicolonError',       s:red1,   '', 'bold' )
