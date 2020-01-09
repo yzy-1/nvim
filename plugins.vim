@@ -75,4 +75,4 @@ Plug 'brooth/far.vim'
 Plug 'junegunn/vim-peekaboo'
 call plug#end()
 
-source plugins-config.vim
+source $CONFIG_DIR/plugins-config.vim
