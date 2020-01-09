@@ -10,10 +10,6 @@ snippet #def "#define ..." b
 #define ${VISUAL}$0
 endsnippet
 
-snippet un "using namespace ..." b
-using namespace ${VISUAL}$0;
-endsnippet
-
 snippet #if "#if #endif" b
 #if ${1:0}
 ${VISUAL}$0
@@ -37,45 +33,45 @@ int main(int argc, char *argv[]) {
 endsnippet
 
 snippet for "for loop"
-for (size_t ${1:i} = ${2:0}; $1 < ${3:count}; $1++) {
-	${VISUAL}$0
-}
+for (int ${1:i} = ${2:0}; $1 < ${3:LENGTH}; $1++) {
+	${VISUAL}$4
+}$0
 endsnippet
 
 snippet fore "for loop empty"
 for ($1) {
-	${VISUAL}$0
-}
+	${VISUAL}$2
+}$0
 endsnippet
 
 snippet forr "for loop reverse"
 for (int ${1:i} = ${2:count - 1}; $1 >= ${3:0}; $1--) {
-	${VISUAL}$0
-}
+	${VISUAL}$4
+}$0
 endsnippet
 
 snippet if "if (...)"
 if (${1:expression}) {
-	${VISUAL}$0
-}
+	${VISUAL}$2
+}$0
 endsnippet
 
 snippet else "else" 
 else {
-	${VISUAL}$0
-}
+	${VISUAL}$1
+}$0
 endsnippet
 
 snippet elseif "else if (...)"
 else if (${1:expression}) {
-	${VISUAL}$0
-}
+	${VISUAL}$2
+}$0
 endsnippet
 
 snippet while "while loop"
 while (${1:expression}) {
-	${VISUAL}$0
-}
+	${VISUAL}$2
+}$0
 endsnippet
 
 snippet do "do while loop"
@@ -94,16 +90,14 @@ snippet fund "function declaration"
 ${1:void} ${2:FunctionName}($3);
 endsnippet
 
-snippet fprintf "fprintf(...)"
-fprintf(${1:stderr}, "${2:%s}"${2/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$3${2/([^%]|%%)*(%.)?.*/(?2:\);)/}
-endsnippet
-
-snippet printf "printf(...)"
-printf("${1:%s}"${1/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2:\);)/}
-endsnippet
-
 snippet struct "struct ..."
-struct ${1:`!p snip.rv = (snip.basename or "name")`} {
+struct ${1:StructName} {
+	${0:/* data */}
+};
+endsnippet
+
+snippet union "union ..."
+union ${1:UnionName} {
 	${0:/* data */}
 };
 endsnippet

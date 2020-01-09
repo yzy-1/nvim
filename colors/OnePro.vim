@@ -19,15 +19,20 @@ if exists("*<SID>X")
   delf <SID>grey_number
 endif
 
-hi clear
+highlight clear
 syntax reset
 if exists('g:colors_name')
   unlet g:colors_name
 endif
 let g:colors_name = 'OnePro'
 
-if !exists('g:one_allow_italics')
-  let g:one_allow_italics = 0
+if !exists('g:allow_italics')
+  let g:allow_italics = 0
+endif
+
+let s:italic = ''
+if g:allow_italics == 1
+  let s:italic = 'italic'
 endif
 
 if has('gui_running') || has('termguicolors') || &t_Co == 88 || &t_Co == 256
@@ -231,7 +236,7 @@ if has('gui_running') || has('termguicolors') || &t_Co == 88 || &t_Co == 256
   " sets the highlighting for the given group
   fun <SID>XAPI(group, fg, bg, attr)
     let l:attr = a:attr
-    if g:one_allow_italics == 0 && l:attr ==? 'italic'
+    if g:allow_italics == 0 && l:attr ==? 'italic'
       let l:attr= 'none'
     endif
 
@@ -305,9 +310,8 @@ if has('gui_running') || has('termguicolors') || &t_Co == 88 || &t_Co == 256
     let s:orange2 = ['#e5c07b', '180'] " orange 2
 
     let s:syntax_bg     = ['#282c34', '16']
-    " let s:syntax_bg     = ['none', '16']
     let s:syntax_gutter = ['#636d83', '60']
-    let s:syntax_cursor = ['#3c424c', '16']
+    let s:syntax_cursor = ['#2c323c', '16']
 
     let s:syntax_accent = ['#528bff', '69']
 
@@ -352,7 +356,7 @@ if has('gui_running') || has('termguicolors') || &t_Co == 88 || &t_Co == 256
 
   " Vim editor color --------------------------------------------------------{{{
   call <sid>X('Normal',       s:syntax_fg,     s:syntax_bg,      '')
-  call <sid>X('bold',         '',              '',               'bold')
+  call <sid>X('Bold',         '',              '',               'bold')
   call <sid>X('ColorColumn',  '',              s:syntax_cursor,  '')
   call <sid>X('Conceal',      s:mono_4,        s:syntax_bg,      '')
   call <sid>X('Cursor',       '',              s:syntax_accent,  '')
@@ -403,8 +407,8 @@ if has('gui_running') || has('termguicolors') || &t_Co == 88 || &t_Co == 256
   " }}}
 
   " Standard syntax highlighting --------------------------------------------{{{
-  call <sid>X('Comment',        s:mono_3,        '',          'none')
-  call <sid>X('Constant',       s:red1,         '',          '')
+  call <sid>X('Comment',        s:mono_3,        '',          'italic')
+  call <sid>X('Constant',       s:red1,         '',          'none')
   call <sid>X('String',         s:green,         '',          '')
   call <sid>X('Character',      s:green,         '',          '')
   call <sid>X('Number',         s:orange1,         '',          '')
@@ -413,31 +417,20 @@ if has('gui_running') || has('termguicolors') || &t_Co == 88 || &t_Co == 256
   call <sid>X('Identifier',     s:red1,         '',          'none')
   call <sid>X('Function',       s:blue,         '',          '')
   call <sid>X('Statement',      s:purple,         '',          'none')
-  call <sid>X('Conditional',    s:purple,         '',          '')
-  call <sid>X('Repeat',         s:purple,         '',          '')
   call <sid>X('Label',          s:red1,         '',          '')
   call <sid>X('Operator',       s:mono_2,         '',          'none')
-  call <sid>X('Keyword',        s:purple,         '',          '')
-  call <sid>X('Exception',      s:purple,         '',          '')
-  call <sid>X('PreProc',        s:orange2,       '',          '')
-  call <sid>X('Include',        s:purple,         '',          '')
-  call <sid>X('Define',         s:purple,         '',          'none')
-  call <sid>X('Macro',          s:purple,         '',          '')
-  call <sid>X('PreCondit',      s:orange2,       '',          '')
+  call <sid>X('PreProc',        s:purple,       '',          '')
   call <sid>X('Type',           s:orange2,       '',          'none')
-  call <sid>X('StorageClass',   s:orange2,       '',          '')
-  call <sid>X('Structure',      s:orange2,       '',          '')
-  call <sid>X('Typedef',        s:orange2,       '',          '')
-  call <sid>X('Special',        s:blue,         '',          '')
-  call <sid>X('SpecialChar',    s:cyan,              '',          '')
-  call <sid>X('Tag',            '',              '',          '')
-  call <sid>X('Delimiter',      '',              '',          '')
-  call <sid>X('SpecialComment', '',              '',          '')
+  call <sid>X('StorageClass',   s:purple,       '',          'none')
+  call <sid>X('Typedef',        s:cyan,       '',          '')
+  call <sid>X('Special',        s:cyan,         '',          '')
+  call <sid>X('SpecialComment', s:purple,              '',          'none')
   call <sid>X('Debug',          '',              '',          '')
   call <sid>X('Underlined',     '',              '',          'underline')
   call <sid>X('Ignore',         '',              '',          '')
-  call <sid>X('Error',          s:red1,         s:syntax_bg, 'bold')
-  call <sid>X('Todo',           s:mono_4,       s:orange2,   '')
+  highlight clear Error
+  call <sid>X('Error',          s:syntax_fg,     '',        'undercurl', s:red1)
+  call <sid>X('Todo',           s:mono_4,       s:orange2,   'bold')
   " }}}
 
   " Diff highlighting -------------------------------------------------------{{{
@@ -457,29 +450,39 @@ if has('gui_running') || has('termguicolors') || &t_Co == 88 || &t_Co == 256
   " }}}
 
   " C/C++ highlighting ------------------------------------------------------{{{
-  call <sid>X('cInclude',           s:purple,  '', '')
+  highlight link cInclude Include
   call <sid>X('cPreCondit',         s:purple,  '', '')
   call <sid>X('cPreConditMatch',    s:purple,  '', '')
 
   call <sid>X('cType',              s:purple,  '', '')
   call <sid>X('cStorageClass',      s:purple,  '', '')
+  call <sid>X('cCustomClass',       s:orange2, '', '')
   call <sid>X('cStructure',         s:purple,  '', '')
   call <sid>X('cOperator',          s:purple,  '', '')
   call <sid>X('cStatement',         s:purple,  '', '')
-  call <sid>X('cConstant',          s:red1,  '', '')
+  call <sid>X('cConstant',          s:red1,  '', 'bold')
   call <sid>X('cSpecial',           s:cyan,  '', '')
   call <sid>X('cSpecialCharacter',  s:cyan,  '', '')
   call <sid>X('cString',            s:green,  '', '')
+  call <sid>X('cCustomMemVar',      s:red1,  '', 'bold')
 
   call <sid>X('cppType',            s:purple,  '', '')
   call <sid>X('cppStorageClass',    s:purple,  '', '')
+  call <sid>X('cppCustomClass',     s:orange2, '', '')
   call <sid>X('cppStructure',       s:purple,  '', '')
   call <sid>X('cppModifier',        s:purple,  '', '')
   call <sid>X('cppOperator',        s:purple,  '', '')
   call <sid>X('cppAccess',          s:purple,  '', '')
   call <sid>X('cppStatement',       s:purple,  '', '')
-  call <sid>X('cppConstant',        s:red1,  '', '')
-  call <sid>X('cCppString',         s:green,  '', '')
+  call <sid>X('cppConstant',        s:red1,  '', 'bold')
+  call <sid>X('cppString',          s:green,  '', '')
+
+  call <sid>X('cppSTLconstant',     s:red1,  '', 'bold')
+  call <sid>X('cppSTLexception',    s:orange2,  '', '')
+  call <sid>X('cppSTLfunction',     s:blue,  '', '')
+  call <sid>X('cppSTLnamespace',    s:orange2,  '', 'bold')
+  call <sid>X('cppSTLtype',         s:orange2,  '', '')
+  call <sid>X('cppSTLcast',         s:purple,  '', '')
   " }}}
 
   " Cucumber highlighting ---------------------------------------------------{{{
@@ -688,7 +691,7 @@ if has('gui_running') || has('termguicolors') || &t_Co == 88 || &t_Co == 256
   " Markdown highlighting ---------------------------------------------------{{{
   call <sid>X('markdownUrl',              s:mono_3,  '', '')
   call <sid>X('markdownBold',             s:orange1,   '', 'bold')
-  call <sid>X('markdownItalic',           s:orange1,   '', 'bold')
+  call <sid>X('markdownItalic',           s:orange1,   '', 'italic')
   call <sid>X('markdownCode',             s:green,   '', '')
   call <sid>X('markdownCodeBlock',        s:red1,   '', '')
   call <sid>X('markdownCodeDelimiter',    s:green,   '', '')
@@ -784,13 +787,15 @@ if has('gui_running') || has('termguicolors') || &t_Co == 88 || &t_Co == 256
   call <sid>X('vimCommand',      s:purple,  '', '')
   call <sid>X('vimCommentTitle', s:mono_3, '', 'bold')
   call <sid>X('vimFunction',     s:blue,  '', '')
-  call <sid>X('vimFuncName',     s:purple,  '', '')
+  call <sid>X('vimFuncName',     s:blue,  '', '')
   call <sid>X('vimHighlight',    s:cyan,  '', '')
-  call <sid>X('vimLineComment',  s:mono_3, '', '')
+  call <sid>X('vimLineComment',  s:mono_3, '', 'italic')
   call <sid>X('vimParenSep',     s:mono_2, '', '')
   call <sid>X('vimSep',          s:mono_2, '', '')
   call <sid>X('vimUserFunc',     s:blue,  '', '')
   call <sid>X('vimVar',          s:red1,  '', '')
+  call <sid>X('vimOption',       s:orange2,  '', '')
+  call <sid>X('vimGroup',        s:orange2,  '', '')
   " }}}
 
   " XML highlighting --------------------------------------------------------{{{
@@ -817,10 +822,10 @@ if has('gui_running') || has('termguicolors') || &t_Co == 88 || &t_Co == 256
   call <sid>X('rustIdentifier',           s:blue,    '', '')
   call <sid>X('rustDeriveTrait',          s:green,    '', '')
   call <sid>X('SpecialComment',           s:mono_3,    '', '')
-  call <sid>X('rustCommentLine',          s:mono_3,    '', '')
+  call <sid>X('rustCommentLine',          s:mono_3,    '', 'italic')
   call <sid>X('rustCommentLineDoc',       s:mono_3,    '', '')
   call <sid>X('rustCommentLineDocError',  s:mono_3,    '', '')
-  call <sid>X('rustCommentBlock',         s:mono_3,    '', '')
+  call <sid>X('rustCommentBlock',         s:mono_3,    '', 'italic')
   call <sid>X('rustCommentBlockDoc',      s:mono_3,    '', '')
   call <sid>X('rustCommentBlockDocError', s:mono_3,    '', '')
   " }}}
@@ -835,12 +840,11 @@ if has('gui_running') || has('termguicolors') || &t_Co == 88 || &t_Co == 256
   call <sid>X('ALEErrorSign', s:red1,   '', '')
 
   " vim-startify highlighting -----------------------------{{{
-  call <sid>X('StartifyHeader', s:syntax_fg,    '', '')
+  call <sid>X('StartifyHeader', s:syntax_fg,    '', 'bold')
   call <sid>X('StartifySection', s:red1,    '', '')
   call <sid>X('StartifyNumber', s:orange1,    '', '')
   highlight StartifyBracket guifg=#585858 ctermfg=240 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   highlight StartifyFile guifg=#eeeeee ctermfg=255 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
-  highlight StartifyNumber guifg=#ffaf5f ctermfg=215 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   highlight StartifyPath guifg=#8a8a8a ctermfg=245 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   highlight StartifySelect guifg=#5fdfff ctermfg=81 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
   highlight StartifySlash guifg=#585858 ctermfg=240 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
@@ -852,8 +856,8 @@ if has('gui_running') || has('termguicolors') || &t_Co == 88 || &t_Co == 256
 
   " Neovim Terminal Colors --------------------------------------------------{{{
   if has('nvim')
-    let g:terminal_color_0  = "#353a44"
-    let g:terminal_color_8  = "#353a44"
+    let g:terminal_color_0  = "#000000"
+    let g:terminal_color_8  = "#767676"
     let g:terminal_color_1  = "#e88388"
     let g:terminal_color_9  = "#e88388"
     let g:terminal_color_2  = "#a7cc8c"

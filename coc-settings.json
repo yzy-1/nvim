@@ -10,7 +10,9 @@
         "compile_commands.json",
         ".vim/",
         ".git/",
-        ".hg/"
+        ".hg/",
+        ".root",
+        ".project"
       ],
       "filetypes": [
         "c",
@@ -25,10 +27,51 @@
         "start"
       ],
       "filetypes": [
-        "sh"
+        "sh",
+        "bash"
       ],
-      "ignoredRootPaths": [
-      ]
+      "ignoredRootPaths": []
     }
-  }
+  },
+  "explorer.keyMappingMode": "none",
+  "explorer.width": 40,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.keyMappings": {
+    "k": "nodePrev",
+    "j": "nodeNext",
+    "*": "toggleSelection",
+    "<tab>": "actionMenu",
+    "h": "collapse",
+    "l": "expand",
+    "gl": "expandRecursive",
+    "gh": "collapseRecursive",
+    "L": "open",
+    "s": "openInVsplit",
+    "t": "openInTab",
+    "H": "gotoParent",
+    "Y": "copyFilepath",
+    "y": "copyFilename",
+    "c": "copyFile",
+    "x": "cutFile",
+    "p": "pasteFile",
+    "d": "delete",
+    "a": "addFile",
+    "A": "addDirectory",
+    "r": "rename",
+    ".": "toggleHidden",
+    "R": "refresh",
+    "?": "help",
+    "q": "quit",
+    "f": "search",
+    "gf": "gotoSource:file",
+    "gb": "gotoSource:buffer"
+  },
+  "explorer.file.columns": [
+    "selection",
+    "clip",
+    "diagnosticError",
+    "indent",
+    "icon",
+    "filename"
+  ]
 }

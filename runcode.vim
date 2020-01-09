@@ -1,4 +1,4 @@
-func! RunCode()
+function! RunCode()
   exec "w"
   exec "set splitbelow"
   if &filetype == 'c'
@@ -19,16 +19,18 @@ func! RunCode()
   elseif &filetype == 'html'
     exec "!chromium % &"
   elseif &filetype == 'markdown'
-    exec "MarkdownPreview"
+    exec "!chromium % &"
+  elseif &filetype == 'vim'
+    exec "source %"
   endif
 endfunc
 
-func! BuildCode()
+function! BuildCode()
   exec "w"
   if &filetype == 'c'
-    exec "AsyncRun clang -Wall -g % -o %<"
+    exec "AsyncRun clang -std=c99 -g \"%\" -o \"%<\" -lm"
   elseif &filetype == 'cpp'
-    exec "AsyncRun clang++ -Wall -g % -o %<"
+    exec "AsyncRun clang++ -std=c++11 -g \"%\" -o \"%<\""
   endif
 endfunc
 
