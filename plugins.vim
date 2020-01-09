@@ -58,12 +58,12 @@ Plug 'yzy-1/vim-cpp-enhanced-highlight'
 Plug 'AndrewRadev/switch.vim'
 
 " Emment-vim
-Plug 'mattn/emmet-vim', { 'for': 'html' }
-Plug 'mattn/webapi-vim'
+" Plug 'mattn/emmet-vim', { 'for': 'html' }
+" Plug 'mattn/webapi-vim'
 
 " Snippets
-Plug 'SirVer/ultisnips'
-Plug 'elzr/vim-json'
+" Plug 'SirVer/ultisnips'
+" Plug 'elzr/vim-json'
 
 " Easy motion
 Plug 'easymotion/vim-easymotion'

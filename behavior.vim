@@ -30,8 +30,7 @@ set softtabstop=2
 " List config
 set list
 set listchars=tab:▸\           " ┐
-set listchars+=trail:·         " │ Use custom symbols to
-" set listchars+=eol:↴           " │ represent invisible characters.
+set listchars+=trail:·         " │ Use custom symbols to represent invisible characters.
 set listchars+=nbsp:_          " ┘
 
 " Search config

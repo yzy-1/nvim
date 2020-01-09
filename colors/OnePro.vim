@@ -460,11 +460,11 @@ if has('gui_running') || has('termguicolors') || &t_Co == 88 || &t_Co == 256
   call <sid>X('cStructure',         s:purple,  '', '')
   call <sid>X('cOperator',          s:purple,  '', '')
   call <sid>X('cStatement',         s:purple,  '', '')
-  call <sid>X('cConstant',          s:red1,  '', 'bold')
+  call <sid>X('cConstant',          s:red1,  '', '')
   call <sid>X('cSpecial',           s:cyan,  '', '')
   call <sid>X('cSpecialCharacter',  s:cyan,  '', '')
   call <sid>X('cString',            s:green,  '', '')
-  call <sid>X('cCustomMemVar',      s:red1,  '', 'bold')
+  call <sid>X('cCustomMemVar',      s:red1,  '', '')
 
   call <sid>X('cppType',            s:purple,  '', '')
   call <sid>X('cppStorageClass',    s:purple,  '', '')
@@ -474,13 +474,13 @@ if has('gui_running') || has('termguicolors') || &t_Co == 88 || &t_Co == 256
   call <sid>X('cppOperator',        s:purple,  '', '')
   call <sid>X('cppAccess',          s:purple,  '', '')
   call <sid>X('cppStatement',       s:purple,  '', '')
-  call <sid>X('cppConstant',        s:red1,  '', 'bold')
+  call <sid>X('cppConstant',        s:red1,  '', '')
   call <sid>X('cppString',          s:green,  '', '')
 
-  call <sid>X('cppSTLconstant',     s:red1,  '', 'bold')
+  call <sid>X('cppSTLconstant',     s:red1,  '', '')
   call <sid>X('cppSTLexception',    s:orange2,  '', '')
   call <sid>X('cppSTLfunction',     s:blue,  '', '')
-  call <sid>X('cppSTLnamespace',    s:orange2,  '', 'bold')
+  call <sid>X('cppSTLnamespace',    s:orange2,  '', '')
   call <sid>X('cppSTLtype',         s:orange2,  '', '')
   call <sid>X('cppSTLcast',         s:purple,  '', '')
   " }}}
@@ -803,6 +803,10 @@ if has('gui_running') || has('termguicolors') || &t_Co == 88 || &t_Co == 256
   call <sid>X('xmlEndTag',  s:red1,   '', '')
   call <sid>X('xmlTag',     s:red1,   '', '')
   call <sid>X('xmlTagName', s:red1,   '', '')
+  " }}}
+
+  " YAML highlighting --------------------------------------------------------{{{
+  call <sid>X('yamlBool',   s:orange2, '', '')
   " }}}
 
   " ZSH highlighting --------------------------------------------------------{{{

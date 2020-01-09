@@ -1,4 +1,98 @@
 {
+  // trigger
+  "suggest.noselect": false,
+  // diagnostic
+  "diagnostic.infoSign": "I>",
+  "diagnostic.hintSign": "H>",
+  "diagnostic.warningSign": "W>",
+  "diagnostic.errorSign": "E>",
+  "diagnostic.enable": true,
+  "diagnostic.signOffset": 9999999,
+  "diagnostic.highlightOffset": 9999999,
+  "diagnostic.refreshAfterSave": false,
+  // source
+  "coc.source.around.enable": false,
+  "coc.source.buffer.enable": false,
+  "yank.enableCompletion": false,
+  // suggest
+  "suggest.completionItemKindLabels": {
+    "keyword": "\uf1de",
+    "variable": "\ue79b",
+    "value": "\uf89f",
+    "operator": "\u03a8",
+    "function": "\u0192",
+    "reference": "\ufa46",
+    "constant": "\uf8fe",
+    "method": "\uf09a",
+    "struct": "\ufb44",
+    "class": "\uf0e8",
+    "interface": "\uf417",
+    "text": "\ue612",
+    "enum": "\uf435",
+    "enumMember": "\uf02b",
+    "module": "\uf40d",
+    "color": "\ue22b",
+    "property": "\ue624",
+    "field": "\uf9be",
+    "unit": "\uf475",
+    "event": "\ufacd",
+    "file": "\uf723",
+    "folder": "\uf114",
+    "snippet": "\ue60b",
+    "typeParameter": "\uf728",
+    "default": "\uf29c"
+  },
+  "suggest.snippetIndicator": "►",
+  "suggest.disableMenuShortcut": true,
+  "suggest.disableMenu": true,
+  // explorer
+  "explorer.keyMappingMode": "none",
+  "explorer.width": 40,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.keyMappings": {
+    "k": "nodePrev",
+    "j": "nodeNext",
+    "<Space>": "toggleSelection",
+    "<TAB>": "actionMenu",
+    "h": "collapse",
+    "l": "expand",
+    "L": "open",
+    "sl": "openInVsplit",
+    "t": "openInTab",
+    "H": "gotoParent",
+    "yy": "copyFile",
+    "dd": "cutFile",
+    "pp": "pasteFile",
+    "dD": "delete",
+    "a": "addFile",
+    "m": "addDirectory",
+    "cw": "rename",
+    "zh": "toggleHidden",
+    "R": "refresh",
+    "?": "help",
+    "f": "search",
+    "gf": "gotoSource:file",
+    "gb": "gotoSource:buffer"
+  },
+  "explorer.file.columns": [
+    "selection",
+    "clip",
+    "diagnosticError",
+    "indent",
+    "icon",
+    "filename"
+  ],
+  // html
+  "html.suggest.angular1": false, // angular1 is outdate
+  // emeet
+  "emmet.showAbbreviationSuggestions": true,
+  // vimlsp
+  "vimlsp.indexes.runtimepath": true,
+  "vimlsp.indexes.gap": 10,
+  "vimlsp.indexes.count": 3,
+  "vimlsp.suggest.fromVimruntime": true,
+  "vimlsp.suggest.fromRuntimepath": false,
+  // languageserver
   "languageserver": {
     "clangd": {
       "command": "clangd",
@@ -32,46 +126,5 @@
       ],
       "ignoredRootPaths": []
     }
-  },
-  "explorer.keyMappingMode": "none",
-  "explorer.width": 40,
-  "explorer.icon.enableNerdfont": true,
-  "explorer.keyMappings": {
-    "k": "nodePrev",
-    "j": "nodeNext",
-    "*": "toggleSelection",
-    "<tab>": "actionMenu",
-    "h": "collapse",
-    "l": "expand",
-    "gl": "expandRecursive",
-    "gh": "collapseRecursive",
-    "L": "open",
-    "s": "openInVsplit",
-    "t": "openInTab",
-    "H": "gotoParent",
-    "Y": "copyFilepath",
-    "y": "copyFilename",
-    "c": "copyFile",
-    "x": "cutFile",
-    "p": "pasteFile",
-    "d": "delete",
-    "a": "addFile",
-    "A": "addDirectory",
-    "r": "rename",
-    ".": "toggleHidden",
-    "R": "refresh",
-    "?": "help",
-    "q": "quit",
-    "f": "search",
-    "gf": "gotoSource:file",
-    "gb": "gotoSource:buffer"
-  },
-  "explorer.file.columns": [
-    "selection",
-    "clip",
-    "diagnosticError",
-    "indent",
-    "icon",
-    "filename"
-  ]
+  }
 }

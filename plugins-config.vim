@@ -24,13 +24,23 @@ let g:AutoPairsShortcutJump = ''
 let g:AutoPairsShortcutBackInsert = ''
 
 " Coc
-let g:coc_global_extensions = [ 'coc-css', 'coc-explorer', 'coc-html', 'coc-json', 'coc-python', 'coc-tsserver', 'coc-ultisnips', 'coc-vimlsp', 'coc-yank', 'coc-highlight' ]
+let g:coc_global_extensions = [ 'coc-css', 'coc-explorer', 'coc-html', 'coc-json', 'coc-python', 'coc-tsserver', 'coc-vimlsp', 'coc-yank', 'coc-highlight', 'coc-emmet', 'coc-snippets' ]
 inoremap <C-j> <C-n>
 inoremap <C-k> <C-p>
 nmap <silent> R <Plug>(coc-refactor)
 nmap <silent> <LEADER>f <Plug>(coc-format)
 nnoremap <M-q> :CocCommand explorer<CR>
 nnoremap <silent> <LEADER>p :<C-u>CocList -A --normal yank<CR>
+inoremap <silent><expr> <C-Space> coc#refresh()
+" Use <TAB> to accept
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+inoremap <silent><expr> <TAB>
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ coc#expandable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand',''])\<CR>" :
+  \ "\<C-y>"
 
 " Start screen
 let g:startify_files_number = 8
@@ -95,15 +105,8 @@ let g:switch_custom_definitions = [
 \   ['0', '1']
 \ ]
 
-" Emment-vim
-augroup Emment
-  autocmd FileType html imap <expr><TAB> emmet#expandAbbrIntelligent("\<TAB>")
-  autocmd Filetype html imap ,, <ESC><C-y>n
-augroup END
-let g:user_emmet_settings = webapi#json#decode(join(readfile(expand('~/.config/nvim/EmmetSnippets.json')), "\n"))
-
 " Snippets
-let g:UltiSnipsExpandTrigger='<tab>'
+let g:UltiSnipsExpandTrigger='<C-e>'
 let g:UltiSnipsJumpForwardTrigger=',,'
 
 " Easy motion
