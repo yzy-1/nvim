@@ -11,12 +11,12 @@ function! Expander()
 
   if first ==# '>'
     if second ==# '<' && third ==# '/'
-      return "\<CR>\<C-o>==\<C-o>O"
+      return "\<C-g>u\<CR>\<C-o>==\<C-o>O"
     else
-      return "\<CR>"
+      return "\<C-g>u\<CR>"
     endif
   else
-    return "\<CR>"
+    return "\<C-g>u\<CR>"
   endif
 endfunction
 inoremap <expr> <CR> Expander()

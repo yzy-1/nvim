@@ -25,9 +25,7 @@ let g:AutoPairsShortcutBackInsert = ''
 
 " Coc
 let g:coc_global_extensions = [ 'coc-css', 'coc-explorer', 'coc-html', 'coc-json', 'coc-python', 'coc-tsserver', 'coc-vimlsp', 'coc-yank', 'coc-highlight', 'coc-emmet', 'coc-snippets' ]
-inoremap <C-j> <C-n>
-inoremap <C-k> <C-p>
-nmap <silent> R <Plug>(coc-refactor)
+nmap <silent> R <Plug>(coc-rename)
 nmap <silent> <LEADER>f <Plug>(coc-format)
 nnoremap <M-q> :CocCommand explorer<CR>
 nnoremap <silent> <LEADER>p :<C-u>CocList -A --normal yank<CR>
@@ -41,6 +39,13 @@ inoremap <silent><expr> <TAB>
   \ <SID>check_back_space() ? "\<TAB>" :
   \ coc#expandable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand',''])\<CR>" :
   \ "\<C-y>"
+" Use <C-j>/<C-k> to jump to next expand on select next suggestion
+inoremap <silent> <expr> <C-j>
+  \ pumvisible() ? "\<C-n>" :
+  \ "\<C-j>"
+inoremap <silent> <expr> <C-k>
+  \ pumvisible() ? "\<C-p>" :
+  \ "\<C-k>"
 
 " Start screen
 let g:startify_files_number = 8
