@@ -6,11 +6,7 @@ Plug 'skywind3000/asyncrun.vim'
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
-if has('nvim') || has('patch-8.0.902')
-  Plug 'mhinz/vim-signify'
-else
-  Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
-endif
+Plug 'airblade/vim-gitgutter'
 
 " Comment
 Plug 'tpope/vim-commentary'
@@ -31,7 +27,10 @@ Plug 'kana/vim-textobj-function'
 Plug 'mhinz/vim-startify'
 
 " Status line
-Plug 'vim-airline/vim-airline'
+Plug 'theniceboy/eleline.vim'
+
+" Color scheme
+Plug 'morhetz/gruvbox'
 
 " InsentLine
 Plug 'Yggdroot/indentLine'
@@ -49,6 +48,8 @@ Plug 'liuchengxu/vista.vim'
 Plug 'mbbill/undotree'
 
 " Markdown
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 
 " C/C++
@@ -57,8 +58,12 @@ Plug 'yzy-1/vim-cpp-enhanced-highlight'
 " Switch
 Plug 'AndrewRadev/switch.vim'
 
-" Json
+" HTML, CSS, JavaScript, PHP, JSON, etc.
 Plug 'elzr/vim-json'
+Plug 'hail2u/vim-css3-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
+Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
+Plug 'yuezk/vim-js', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
+Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
 
 " Easy motion
 Plug 'easymotion/vim-easymotion'
@@ -68,6 +73,19 @@ Plug 'brooth/far.vim'
 
 " Peekaboo
 Plug 'junegunn/vim-peekaboo'
+
+" Formatter
+Plug 'Chiel92/vim-autoformat'
+
+" Auto sudo
+Plug 'lambdalisue/suda.vim'
+
+" Multiple Cursors
+Plug 'terryma/vim-multiple-cursors'
+
+" Easy Align
+Plug 'junegunn/vim-easy-align'
+
 call plug#end()
 
 source $CONFIG_DIR/plugins-config.vim

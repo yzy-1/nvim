@@ -1,42 +1,48 @@
+" 定义 <LEADER> 键
 let mapleader=' '
 
-" Indentation
+" 保存 & 退出
+nnoremap <C-q> :wqa<CR>
+
+" 缩进
 nnoremap < <<
 nnoremap > >>
 
-" Search
+" 搜索
 noremap - Nzz
 noremap = nzz
 noremap <LEADER><CR> :nohlsearch<CR>
 noremap # *zz
-noremap 1 #zz
+noremap <C-#> #zz
 
-" Use <lEADER><Space> to select one word
+" 使用 <LEADER><Space> 选中一个单词
 nnoremap <LEADER><Space> viw
 vnoremap <Space> iw
 
-" Goto next word
-noremap N b
+" 跳转到下一个单词
+noremap N be
 noremap n e
 
-" Move one screen
+" 翻页
 noremap J <C-f>
 noremap K <C-b>
 
-" Fast move keymap
+" 快速移动
 noremap H b
 noremap L w
 
-" Use * jump to line start (instead of ^)
+" 使用 * 和 ^ 移动到行首/行尾
 noremap * ^
 noremap ^ 0
 
-" Remove keymap
+" 删除 keymap
 noremap Q <nop>
 noremap b <nop>
-nnoremap t <nop>
+noremap m <nop>
+noremap ' <nop>
+vnoremap x <nop>
 
-" Use <LEADER> + hjkl keys for moving the cursor around windows
+" 使用 <LEADER> + hjkl 移动窗口
 nnoremap <LEADER>h <C-w>h
 nnoremap <LEADER>j <C-w>j
 nnoremap <LEADER>k <C-w>k
@@ -47,61 +53,47 @@ nnoremap <LEADER>J <C-w>J
 nnoremap <LEADER>K <C-w>K
 nnoremap <LEADER>L <C-w>L
 
-" Split the screens to up (horizontal), down (horizontal)
-" Left (vertical), right (vertical)
+" 分屏
 nnoremap sh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
 nnoremap sj :set splitbelow<CR>:split<CR>
 nnoremap sk :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
 nnoremap sl :set splitright<CR>:vsplit<CR>
 
-" Resize splits with arrow keys
-noremap <UP> :res +5<CR>
-noremap <DOWN> :res -5<CR>
-noremap <LEFT> :vertical resize-5<CR>
-noremap <RIGHT> :vertical resize+5<CR>
+" 改变窗口大小
+nnoremap <C-k> :res +5<CR>
+nnoremap <C-j> :res -5<CR>
+nnoremap <C-h> :vertical resize-5<CR>
+nnoremap <C-l> :vertical resize+5<CR>
 
-" Tab keymap
-nnoremap te :tabe<Space>
-nnoremap tj :+tabnext<CR>
-nnoremap tk :-tabnext<CR>
+" 移动到上个/下个 Tab
+nnoremap <C-e> :-tabnext<CR>
+nnoremap <C-r> :+tabnext<CR>
 
-" Move cursor to last position
+" 跳转光标历史记录
 noremap <C-i> <C-o>
 noremap <C-o> <C-i>
 
-" Goto next/prev diagnostic
+" 跳转到上个/下个错误
 nmap <silent> ge <Plug>(coc-diagnostic-next)
 nmap <silent> gE <Plug>(coc-diagnostic-prev)
 
-" Goto definition/reference
+" 跳转 definition/reference
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 
-" Press ` to switch latter case (instead of ~)
-noremap ` ~
-
-" Command line (instead of :)
+" 打开命令行
 noremap ; :
 
-" Insert a new line under the cursor line
+" 在当前行上/下插入新行
 inoremap <S-CR> <ESC>o
 inoremap <C-CR> <ESC>O
 
-" Go to Terminal-Normal mode
+" 切换到 Terminal-Normal mode
 tnoremap <ESC><ESC> <C-\><C-n>
 
-" Source or edit vimrc
-nnoremap e <nop>
-nnoremap src :source $MYVIMRC<CR>
-nnoremap erc :tabe $MYVIMRC<CR>
-
-" Make a new line then paste
+" 在粘贴前插入一个新行
 nnoremap <C-p> o<ESC>p^
 
-" Increase and decrease number
+" 自增/自减光标下的数字
 nnoremap _ <C-x>
 nnoremap + <C-a>
-
-" Copy to system clipboard
-vnoremap Y "+y
-

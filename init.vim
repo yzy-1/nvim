@@ -7,6 +7,8 @@ source $CONFIG_DIR/system.vim
 source $CONFIG_DIR/display.vim
 source $CONFIG_DIR/behavior.vim
 source $CONFIG_DIR/keymaps.vim
-source $CONFIG_DIR/fcitx.vim
-source $CONFIG_DIR/runcode.vim
-source $CONFIG_DIR/plugins.vim
+if !exists('g:vscode')
+  " source $CONFIG_DIR/fcitx.vim
+  source $CONFIG_DIR/runcode.vim
+  source $CONFIG_DIR/plugins.vim
+endif

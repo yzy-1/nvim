@@ -9,11 +9,14 @@ set novisualbell
 set showmatch
 set showcmd
 set wildmenu
-set scrolloff=0
+set scrolloff=10
 set tw=0
 set indentexpr=
 set backspace=indent,eol,start
-set foldmethod=syntax
+augroup FoldMethod
+  au BufReadPre * setlocal foldmethod=indent
+  au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+augroup END
 set foldlevel=99
 augroup NoRepeatComment
   autocmd!

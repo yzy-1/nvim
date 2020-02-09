@@ -19,7 +19,7 @@ function! RunCode()
   elseif &filetype == 'html'
     exec "!chromium % &"
   elseif &filetype == 'markdown'
-    exec "!chromium % &"
+    exec "MarkdownPreview"
   elseif &filetype == 'vim'
     exec "source %"
   endif
@@ -28,9 +28,9 @@ endfunc
 function! BuildCode()
   exec "w"
   if &filetype == 'c'
-    exec "AsyncRun clang -std=c99 -g \"%\" -o \"%<\" -lm"
+    exec "AsyncRun gcc -std=c99 -Wall -g \"%\" -o \"%<\" -lm"
   elseif &filetype == 'cpp'
-    exec "AsyncRun clang++ -std=c++11 -g \"%\" -o \"%<\""
+    exec "AsyncRun g++ -std=c++11 -Wall -g \"%\" -o \"%<\" -lm"
   endif
 endfunc
 

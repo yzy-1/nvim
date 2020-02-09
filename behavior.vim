@@ -51,4 +51,4 @@ set updatetime=100
 
 " Show a column line
 set colorcolumn=80
-
+set virtualedit=block

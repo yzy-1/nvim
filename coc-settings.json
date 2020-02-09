@@ -1,6 +1,11 @@
 {
+  // preferences
+  "coc.preferences.hoverTarget": "preview",
+  "coc.preferences.enableFloatHighlight": true,
+
   // trigger
   "suggest.noselect": false,
+
   // diagnostic
   "diagnostic.infoSign": "I>",
   "diagnostic.hintSign": "H>",
@@ -10,10 +15,12 @@
   "diagnostic.signOffset": 9999999,
   "diagnostic.highlightOffset": 9999999,
   "diagnostic.refreshAfterSave": false,
+
   // source
   "coc.source.around.enable": false,
   "coc.source.buffer.enable": false,
   "yank.enableCompletion": false,
+
   // suggest
   "suggest.completionItemKindLabels": {
     "keyword": "\uf1de",
@@ -45,6 +52,17 @@
   "suggest.snippetIndicator": "►",
   "suggest.disableMenuShortcut": true,
   "suggest.disableMenu": true,
+  "suggest.detailMaxLength": 60,
+  "suggest.enablePreview": true,
+  "suggest.floatEnable": true,
+  "suggest.detailField": "preview",
+
+  // snippets
+  "snippets.loadFromExtensions": false,
+
+  // format
+  "coc.preferences.formatOnSaveFiletypes": [],
+
   // explorer
   "explorer.keyMappingMode": "none",
   "explorer.width": 40,
@@ -84,20 +102,32 @@
   ],
   // html
   "html.suggest.angular1": false, // angular1 is outdate
+
+  // javascript
+  "javascript.referencesCodeLens.enable": true,
+  "javascript.showUnused": true,
+  "javascript.suggest.names": true,
+  "javascript.suggestionActions.enabled": true,
+  "json.format.enable": false,
+
   // emeet
   "emmet.showAbbreviationSuggestions": true,
+
   // vimlsp
   "vimlsp.indexes.runtimepath": true,
   "vimlsp.indexes.gap": 10,
   "vimlsp.indexes.count": 3,
   "vimlsp.suggest.fromVimruntime": true,
   "vimlsp.suggest.fromRuntimepath": false,
+
   // languageserver
   "languageserver": {
     "clangd": {
       "command": "clangd",
       "args": [
-        "--background-index"
+        "--background-index",
+        "--header-insertion=never",
+        "--clang-tidy"
       ],
       "rootPatterns": [
         "compile_flags.txt",
