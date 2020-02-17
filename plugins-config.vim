@@ -32,22 +32,19 @@ nnoremap <M-q> :CocCommand explorer<CR>
 nnoremap <silent> <LEADER>p :<C-u>CocList -A --normal yank<CR>
 inoremap <silent><expr> <C-Space> coc#refresh()
 
-" Use <TAB> to accept
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
+" 适用 <TAB> 补全或展开 snippets
 inoremap <silent><expr> <TAB>
-      \ coc#expandable() ?
-      \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand',''])\<CR>" :
       \ pumvisible() ? coc#_select_confirm() :
-      \ coc#jumpable() ?
-      \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-let g:coc_snippet_next = ''
-let g:coc_snippet_prev = ''
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<TAB>'
 
 " Use <C-j>/<C-k> to jump to next expand on select next suggestion
 imap <expr> <C-j>
@@ -151,10 +148,6 @@ let g:switch_custom_definitions = [
       \ ['0', '1'],
       \ ['+', '-'],
       \ ]
-
-" Snippets
-let g:UltiSnipsExpandTrigger = '<C-b>'
-let g:UltiSnipsJumpForwardTrigger = '<C-z>'
 
 " Easy motion
 let g:EasyMotion_do_mapping = 0
