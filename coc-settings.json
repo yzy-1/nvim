@@ -74,6 +74,7 @@
     "<TAB>": "actionMenu",
     "h": "collapse",
     "l": "expand",
+    "<CR>": "expand",
     "L": "open",
     "sl": "openInVsplit",
     "t": "openInTab",
@@ -122,28 +123,40 @@
 
   // languageserver
   "languageserver": {
-    "clangd": {
-      "command": "clangd",
-      "args": [
-        "--background-index",
-        "--header-insertion=never",
-        "--clang-tidy"
-      ],
-      "rootPatterns": [
-        "compile_flags.txt",
-        "compile_commands.json",
-        ".vim/",
-        ".git/",
-        ".hg/",
-        ".root",
-        ".project"
-      ],
-      "filetypes": [
-        "c",
-        "cpp",
-        "objc",
-        "objcpp"
-      ]
+    // "clangd": {
+    //   "command": "clangd",
+    //   "args": [
+    //     "--background-index",
+    //     "--header-insertion=never",
+    //     "--clang-tidy"
+    //   ],
+    //   "rootPatterns": [
+    //     "compile_flags.txt",
+    //     "compile_commands.json",
+    //     ".git/",
+    //     ".hg/",
+    //     ".root",
+    //     ".project"
+    //   ],
+    //   "filetypes": [
+    //     "c",
+    //     "cpp",
+    //     "objc",
+    //     "objcpp"
+    //   ]
+    // },
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+      "rootPatterns": [".root", ".project", ".ccls", ".ccls-root", "compile_commands.json", ".git/", ".hg/"],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls"
+        },
+        "clang": {
+          "resourceDir": "/usr/lib/clang/9.0.1"
+        }
+      }
     },
     "bash": {
       "command": "bash-language-server",

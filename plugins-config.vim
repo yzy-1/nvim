@@ -39,15 +39,15 @@ function! s:check_back_space() abort
 endfunction
 
 inoremap <silent><expr> <TAB>
+      \ coc#expandable() ?
+      \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand',''])\<CR>" :
       \ pumvisible() ? coc#_select_confirm() :
+      \ coc#jumpable() ?
+      \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <silent><expr> <C-e>
-      \ coc#expandableOrJumpable() ?
-      \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ ''
-let g:coc_snippet_next = '<C-e>'
-let g:coc_snippet_prev = '<C-w>'
+let g:coc_snippet_next = ''
+let g:coc_snippet_prev = ''
 
 " Use <C-j>/<C-k> to jump to next expand on select next suggestion
 imap <expr> <C-j>
@@ -86,7 +86,6 @@ set laststatus=2
 " Color scheme
 set termguicolors
 set background=dark
-let g:gruvbox_italic = 1
 colorscheme gruvbox
 highlight CocErrorHighlight gui=undercurl guisp=red
 highlight CocWarningHighlight gui=undercurl guisp=green
@@ -114,6 +113,30 @@ let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_override_foldtext = 0
 let g:tex_conceal = ""
 let g:vim_markdown_math = 1
+
+let g:mkdp_auto_start = 0
+let g:mkdp_auto_close = 1
+let g:mkdp_refresh_slow = 1
+let g:mkdp_command_for_global = 0
+let g:mkdp_open_to_the_world = 0
+let g:mkdp_open_ip = ''
+let g:mkdp_browser = 'chromium'
+let g:mkdp_echo_preview_url = 0
+let g:mkdp_browserfunc = ''
+let g:mkdp_preview_options = {
+      \ 'mkit': {},
+      \ 'katex': {},
+      \ 'uml': {},
+      \ 'maid': {},
+      \ 'disable_sync_scroll': 0,
+      \ 'sync_scroll_type': 'middle',
+      \ 'hide_yaml_meta': 1,
+      \ 'sequence_diagrams': {},
+      \ 'flowchart_diagrams': {}
+      \ }
+let g:mkdp_highlight_css = ''
+let g:mkdp_port = ''
+let g:mkdp_page_title = 'Preview: ${name}'
 
 " C/C++
 let g:cpp_class_scope_highlight = 1

@@ -1,11 +1,7 @@
 priority -50
 
-snippet #inc< "#include <...>" b
-#include <${1:bits/stdc++.h}>$0
-endsnippet
-
-snippet #inc "#include ..." b
-#include "${VISUAL}$0"
+snippet inc "#include ..." b
+#include ${1:"header"}$0
 endsnippet
 
 snippet #if "#if #endif" b
@@ -16,22 +12,22 @@ endsnippet
 
 snippet #ifndef "#ifndef ... #define ... #endif" b
 #ifndef ${1:`!p
-	import string, re
-		name = re.sub(r'[^A-Za-z0-9]+','_', snip.fn).upper()
-		snip.rv = ('%s_' % (name)).upper()
-		`}
+import string, re
+name = re.sub(r'[^A-Za-z0-9]+','_', snip.fn).upper()
+snip.rv = ('%s_' % (name)).upper()
+`}
 #define ${1:SYMBOL} ${2:value}
 
-		${VISUAL}$0
+${VISUAL}$0
 
 #endif // ifndef $1
-		endsnippet
+endsnippet
 
-		snippet main "main function"
-		int main(int argsLength, char *args[]) {
-			${VISUAL}$0
-				return 0;
-		}
+snippet main "main function"
+int main(int argsLength, char *args[]) {
+	${VISUAL}$0
+	return 0;
+}
 endsnippet
 
 snippet for "for loop"
