@@ -1,6 +1,7 @@
 syntax enable
 syntax on
 set number
+set relativenumber
 set cursorline
 set noshowmode
 set ruler
@@ -32,3 +33,8 @@ set autochdir
 
 set splitright
 set splitbelow
+
+set colorcolumn=80
+set virtualedit=block
+
+set guifont=Input:h13.5

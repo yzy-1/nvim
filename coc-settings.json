@@ -68,39 +68,41 @@
   "explorer.width": 40,
   "explorer.icon.enableNerdfont": true,
   "explorer.keyMappings": {
+    "i": "unmap",
+    "<tab>": "actionMenu",
+    "<Space>": "toggleSelection",
     "k": "nodePrev",
     "j": "nodeNext",
-    "<Space>": "toggleSelection",
-    "<TAB>": "actionMenu",
     "h": "collapse",
-    "l": "expand",
-    "<CR>": "expand",
-    "L": "open",
-    "sl": "openInVsplit",
-    "t": "openInTab",
     "H": "gotoParent",
+    "l": ["expandable?", "expand", "open"],
+    "L": "open",
+    "J": ["toggleSelection", "nodeNext"],
+    "K": ["toggleSelection", "nodePrev"],
+    "gl": "expandRecursive",
+    "gh": "collapseRecursive",
+    "o": "expandOrCollapse",
+    "<cr>": "open",
+    "sl": "open:split",
+    "E": "open:vsplit",
+    "t": "open:tab",
+    "yp": "copyFilepath",
+    "yn": "copyFilename",
     "yy": "copyFile",
     "dd": "cutFile",
     "pp": "pasteFile",
-    "dD": "delete",
-    "a": "addFile",
+    "dD": "deleteForever",
+    "V": "addFile",
     "m": "addDirectory",
     "cw": "rename",
-    "zh": "toggleHidden",
+    ".": "toggleHidden",
     "R": "refresh",
     "?": "help",
-    "f": "search",
+    "q": "quit",
+    "<esc>": "esc",
     "gf": "gotoSource:file",
     "gb": "gotoSource:buffer"
   },
-  "explorer.file.columns": [
-    "selection",
-    "clip",
-    "diagnosticError",
-    "indent",
-    "icon",
-    "filename"
-  ],
   // html
   "html.suggest.angular1": false, // angular1 is outdate
 
@@ -123,28 +125,6 @@
 
   // languageserver
   "languageserver": {
-    // "clangd": {
-    //   "command": "clangd",
-    //   "args": [
-    //     "--background-index",
-    //     "--header-insertion=never",
-    //     "--clang-tidy"
-    //   ],
-    //   "rootPatterns": [
-    //     "compile_flags.txt",
-    //     "compile_commands.json",
-    //     ".git/",
-    //     ".hg/",
-    //     ".root",
-    //     ".project"
-    //   ],
-    //   "filetypes": [
-    //     "c",
-    //     "cpp",
-    //     "objc",
-    //     "objcpp"
-    //   ]
-    // },
     "ccls": {
       "command": "ccls",
       "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],

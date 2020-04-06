@@ -17,7 +17,7 @@ function! RunCode()
     exec "terminal python3 %"
     exec "normal i"
   elseif &filetype == 'html'
-    exec "!chromium % &"
+    exec "!chrome % &"
   elseif &filetype == 'markdown'
     exec "MarkdownPreview"
   elseif &filetype == 'vim'

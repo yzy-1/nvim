@@ -9,19 +9,16 @@ let g:gitgutter_map_keys = 0
 " Comment
 nmap <LEADER>c gcc
 vmap <LEADER>c gc
-augroup CommentType
-  autocmd FileType c setlocal commentstring=//\ %s
-  autocmd FileType cpp setlocal commentstring=//\ %s
-  autocmd FileType csharp setlocal commentstring=//\ %s
-  autocmd FileType java setlocal commentstring=//\ %s
-  autocmd FileType go setlocal commentstring=//\ %s
-augroup END
+autocmd FileType c,cpp,csharp,java,go setlocal commentstring=//\ %s
 
 " AutoPairs
 let g:AutoPairsShortcutToggle = ''
 let g:AutoPairsShortcutFastWrap = ''
 let g:AutoPairsShortcutJump = ''
 let g:AutoPairsShortcutBackInsert = ''
+autocmd FileType markdown let b:AutoPairs = {
+      \ '(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`',
+      \ '$':'$', '$$':'$$', '**':'**'}
 
 " Coc
 let g:coc_global_extensions = [ 'coc-css', 'coc-explorer', 'coc-html',
@@ -29,13 +26,16 @@ let g:coc_global_extensions = [ 'coc-css', 'coc-explorer', 'coc-html',
       \ 'coc-highlight', 'coc-emmet', 'coc-snippets']
 nmap <silent> R <Plug>(coc-rename)
 nnoremap <M-q> :CocCommand explorer<CR>
-nnoremap <silent> <LEADER>p :<C-u>CocList -A --normal yank<CR>
+noremap <silent> <LEADER>p :<C-u>CocList -A --normal yank<CR>
 inoremap <silent><expr> <C-Space> coc#refresh()
 
-" 适用 <TAB> 补全或展开 snippets
+" 使用 <TAB> 补全或展开 snippets
 inoremap <silent><expr> <TAB>
+      \ coc#expandable() ?
+      \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ coc#expandableOrJumpable() ?
+      \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 
@@ -46,7 +46,6 @@ endfunction
 
 let g:coc_snippet_next = '<TAB>'
 
-" Use <C-j>/<C-k> to jump to next expand on select next suggestion
 imap <expr> <C-j>
       \ pumvisible() ? "\<C-n>" : coc#refresh()
 imap <expr> <C-k>
@@ -117,7 +116,7 @@ let g:mkdp_refresh_slow = 1
 let g:mkdp_command_for_global = 0
 let g:mkdp_open_to_the_world = 0
 let g:mkdp_open_ip = ''
-let g:mkdp_browser = 'chromium'
+let g:mkdp_browser = 'vivaldi-stable'
 let g:mkdp_echo_preview_url = 0
 let g:mkdp_browserfunc = ''
 let g:mkdp_preview_options = {
@@ -172,10 +171,57 @@ let g:suda_smart_edit = 1
 " Muliple Cursors
 let g:multi_cursor_use_default_mapping = 0
 let g:multi_cursor_next_key = '<C-n>'
-let g:multi_cursor_prev_key = '<C-p>'
+let g:multi_cursor_prev_key = ''
 let g:multi_cursor_skip_key = '<C-x>'
 let g:multi_cursor_quit_key = '<Esc>'
 
 " Easy Align
-vmap <Leader>a <Plug>(EasyAlign)
-nmap <Leader>a <Plug>(EasyAlign)
+vmap <LEADER>a <Plug>(EasyAlign)
+nmap <LEADER>a <Plug>(EasyAlign)
+
+" FZF
+noremap <C-p> :FZF<CR>
+noremap <C-f> :Ag<CR>
+noremap <C-b> :Buffers<CR>
+
+" CSharp
+let g:OmniSharp_typeLookupInPreview = 1
+let g:omnicomplete_fetch_full_documentation = 1
+let g:OmniSharp_server_path = $HOME.'/Software/OmniSharpServer/OmniSharp/bin/Debug/OmniSharp.exe'
+
+let g:OmniSharp_server_use_mono = 1
+let g:OmniSharp_server_stdio = 1
+let g:OmniSharp_highlight_types = 2
+let g:OmniSharp_selector_ui = 'fzf'
+
+autocmd Filetype cs nnoremap <buffer> gd :OmniSharpPreviewDefinition<CR>
+autocmd Filetype cs nnoremap <buffer> gr :OmniSharpFindUsages<CR>
+autocmd Filetype cs nnoremap <buffer> gy :OmniSharpTypeLookup<CR>
+autocmd Filetype cs nnoremap <buffer> ga :OmniSharpGetCodeActions<CR>
+autocmd Filetype cs nnoremap <buffer> R :OmniSharpRename<CR><C-N>:res +5<CR>
+
+sign define OmniSharpCodeActions text=💡
+
+augroup OSCountCodeActions
+  autocmd!
+  autocmd FileType cs set signcolumn=yes
+  autocmd CursorHold *.cs call OSCountCodeActions()
+augroup END
+
+function! OSCountCodeActions() abort
+  if bufname('%') ==# '' || OmniSharp#FugitiveCheck() | return | endif
+  if !OmniSharp#IsServerRunning() | return | endif
+  let opts = {
+        \ 'CallbackCount': function('s:CBReturnCount'),
+        \ 'CallbackCleanup': {-> execute('sign unplace 99')}
+        \}
+  call OmniSharp#CountCodeActions(opts)
+endfunction
+
+function! s:CBReturnCount(count) abort
+  if a:count
+    let l = getpos('.')[1]
+    let f = expand('%:p')
+    execute ':sign place 99 line='.l.' name=OmniSharpCodeActions file='.f
+  endif
+endfunction

@@ -1,0 +1,43 @@
+snippet if "if ..."
+if ${1:collection}:
+	${0:pass}
+endsnippet
+
+snippet for "for ... in ..."
+for ${1:item} in ${2:collection}:
+	${0:pass}
+endsnippet
+
+snippet else "else"
+else:
+	${0:pass}
+endsnippet
+
+snippet def "Function"
+def ${1:FunctionName}($2):
+	${0:pass}
+endsnippet
+
+snippet class "Class"
+class ${1:ClassName}(${2:object}):
+	def __init__(${3:self}):
+		${0:pass}
+endsnippet
+
+snippet while "while loop"
+while ${1:True}:
+	${0:pass}
+endsnippet
+
+snippet main "Main function" b
+def main():
+	${0:pass}
+
+
+if __name__ == "__main__":
+	main()
+endsnippet
+
+snippet print "print(...)"
+print($1)$0
+endsnippet

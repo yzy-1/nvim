@@ -29,9 +29,9 @@ set softtabstop=2
 
 " List config
 set list
-set listchars=tab:▸\           " ┐
-set listchars+=trail:·         " │ Use custom symbols to represent invisible characters.
-set listchars+=nbsp:_          " ┘
+set listchars=tab:▸\
+set listchars+=trail:·
+set listchars+=nbsp:_
 
 " Search config
 set hlsearch
@@ -41,14 +41,15 @@ set ignorecase
 set smartcase
 
 " Restore cursor position
-augroup RestoreCursorPosition
-  autocmd!
-  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-augroup END
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") |
+      \ exe "normal! g'\"" | endif
 
 set nottimeout
 set updatetime=100
 
-" Show a column line
-set colorcolumn=80
-set virtualedit=block
+function! CppHead()
+  r $CONFIG_DIR/head.cpp
+  normal ggddGo
+endfunction
+
+autocmd BufNewFile *main.cpp call CppHead()

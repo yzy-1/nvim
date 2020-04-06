@@ -91,9 +91,6 @@ inoremap <C-CR> <ESC>O
 " 切换到 Terminal-Normal mode
 tnoremap <ESC><ESC> <C-\><C-n>
 
-" 在粘贴前插入一个新行
-nnoremap <C-p> o<ESC>p^
-
 " 自增/自减光标下的数字
 nnoremap _ <C-x>
 nnoremap + <C-a>

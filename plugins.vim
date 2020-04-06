@@ -51,8 +51,6 @@ Plug 'mbbill/undotree'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
-" Plug 'iamcco/markdown-preview.vim'
-" Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & cyarn install'  }
 
 " C/C++
@@ -63,17 +61,16 @@ Plug 'AndrewRadev/switch.vim'
 
 " HTML, CSS, JavaScript, PHP, JSON, etc.
 Plug 'elzr/vim-json'
-Plug 'pangloss/vim-javascript', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
-Plug 'yuezk/vim-js', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
+Plug 'pangloss/vim-javascript',
+      \ { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
+Plug 'yuezk/vim-js',
+      \ { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
 
 " Easy motion
 Plug 'easymotion/vim-easymotion'
 
 " Search
 Plug 'brooth/far.vim'
-
-" Peekaboo
-Plug 'junegunn/vim-peekaboo'
 
 " Formatter
 Plug 'Chiel92/vim-autoformat'
@@ -86,6 +83,12 @@ Plug 'terryma/vim-multiple-cursors'
 
 " Easy Align
 Plug 'junegunn/vim-easy-align'
+
+" FZF
+Plug 'junegunn/fzf.vim'
+
+" CSharp
+" Plug 'OmniSharp/omnisharp-vim'
 
 call plug#end()
 
