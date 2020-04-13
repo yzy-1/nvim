@@ -38,3 +38,10 @@ set colorcolumn=80
 set virtualedit=block
 
 set guifont=Input:h13.5
+
+" Color scheme
+set termguicolors
+set background=dark
+colorscheme OnePro
+highlight CocErrorHighlight gui=undercurl guisp=red
+highlight CocWarningHighlight gui=undercurl guisp=green

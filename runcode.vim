@@ -1,3 +1,4 @@
+" 运行当前代码
 function! RunCode()
   exec "w"
   exec "set splitbelow"
@@ -17,7 +18,7 @@ function! RunCode()
     exec "terminal python3 %"
     exec "normal i"
   elseif &filetype == 'html'
-    exec "!chrome % &"
+    exec "!vivaldi % &"
   elseif &filetype == 'markdown'
     exec "MarkdownPreview"
   elseif &filetype == 'vim'
@@ -25,6 +26,7 @@ function! RunCode()
   endif
 endfunc
 
+" 编译当前代码
 function! BuildCode()
   exec "w"
   if &filetype == 'c'

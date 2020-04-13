@@ -47,6 +47,16 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") |
 set nottimeout
 set updatetime=100
 
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" TextEdit might fail if hidden is not set.
+set hidden
+
+" Some servers have issues with backup files
+set nobackup
+set nowritebackup
+
 function! CppHead()
   r $CONFIG_DIR/head.cpp
   normal ggddGo
