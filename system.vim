@@ -1,5 +1,5 @@
-" 禁用鼠标
-set mouse=
+" 启用鼠标
+set mouse=a
 
 " 设置文件默认编码
 set fenc=utf-8

@@ -6,17 +6,6 @@ let g:asyncrun_bell = 0
 let g:asyncrun_stdin = 1
 
 " ===
-" AutoPairs
-" ===
-let g:AutoPairsShortcutToggle = ''
-let g:AutoPairsShortcutFastWrap = ''
-let g:AutoPairsShortcutJump = ''
-let g:AutoPairsShortcutBackInsert = ''
-autocmd FileType markdown let b:AutoPairs = {
-      \ '(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`', '```': '```'
-      \ '$':'$', '$$':'$$', '**':'**'}
-
-" ===
 " AutoSudo
 " ===
 let g:suda_smart_edit = 1
@@ -34,8 +23,8 @@ let c_no_curly_error = 1
 " Coc
 " ===
 let g:coc_global_extensions = [
-      \ 'coc-python', 'coc-vimlsp', 'coc-yank',
-      \ 'coc-snippets', 'coc-json', 'coc-clangd' ]
+      \ 'coc-python', 'coc-vimlsp', 'coc-yank', 'coc-go',
+      \ 'coc-json', 'coc-clangd', 'coc-pairs' ]
 nmap <silent> R <Plug>(coc-rename)
 nnoremap <M-q> :CocCommand explorer<CR>
 noremap <silent> <LEADER>p :<C-u>CocList -A --normal yank<CR>
@@ -49,6 +38,7 @@ nmap <silent> gE <Plug>(coc-diagnostic-prev)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>\<tab><backspace>"
 
 " 使用 <TAB> 补全或展开 snippets
 inoremap <silent><expr> <TAB>

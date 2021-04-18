@@ -41,7 +41,7 @@ set guifont=Input:h13.5
 
 " Color scheme
 set termguicolors
-set background=dark
-colorscheme OnePro
+let ayucolor="mirage"
+colorscheme ayu
 highlight CocErrorHighlight gui=undercurl guisp=red
 highlight CocWarningHighlight gui=undercurl guisp=green

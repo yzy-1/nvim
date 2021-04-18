@@ -9,7 +9,7 @@ let g:compileCommands = {
 function! RunFile()
 	exec "w"
 	exec "set splitbelow"
-	if &filetype == 'c' || &filetype == 'cpp' || &filetype == 'go'
+	if &filetype == 'c' || &filetype == 'cpp'
 		exec "split"
 		exec "res 10"
 		exec "terminal ./%<"
@@ -19,6 +19,8 @@ function! RunFile()
 		exec "res 10"
 		exec "terminal python3 %"
 		exec "normal i"
+	elseif &filetype == 'go'
+		exec "go run ."
 	elseif &filetype == 'html'
 		exec "!firefox % &"
 	elseif &filetype == 'vim'
@@ -47,7 +49,22 @@ func! CompileAndRunFile()
 	call RunFile()
 endfunc
 
+func! ParseTask()
+	FloatermNew parse2cf
+endfunc
+
+func! RunTests()
+	update
+	set splitbelow
+	split
+	res 10
+	terminal cf test
+	normal i
+endfunc
+
 nmap <LEADER>fr :call CompileAndRunFile()<CR>
 nmap <LEADER>fR :call RunFile()<CR>
 nmap <LEADER>fb :call CompileFileAsync()<CR>
 nmap <LEADER>fB :call CompileFile()<CR>
+nmap <LEADER>fp :call ParseTask()<CR>
+nmap <LEADER>ft :call RunTests()<CR>
