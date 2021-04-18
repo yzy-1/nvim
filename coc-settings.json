@@ -1,26 +1,19 @@
 {
   // preferences
-  "coc.preferences.hoverTarget": "preview",
   "coc.preferences.enableFloatHighlight": true,
-
   // trigger
   "suggest.noselect": false,
-
   // diagnostic
   "diagnostic.infoSign": "I>",
   "diagnostic.hintSign": "H>",
   "diagnostic.warningSign": "W>",
   "diagnostic.errorSign": "E>",
   "diagnostic.enable": true,
-  "diagnostic.signOffset": 9999999,
   "diagnostic.highlightOffset": 9999999,
-  "diagnostic.refreshAfterSave": false,
-
   // source
   "coc.source.around.enable": false,
   "coc.source.buffer.enable": false,
   "yank.enableCompletion": false,
-
   // suggest
   "suggest.completionItemKindLabels": {
     "keyword": "\uf1de",
@@ -56,98 +49,24 @@
   "suggest.enablePreview": true,
   "suggest.floatEnable": true,
   "suggest.detailField": "preview",
-
   // snippets
   "snippets.loadFromExtensions": false,
-
   // format
-  "coc.preferences.formatOnSaveFiletypes": [],
-
-  // explorer
-  "explorer.keyMappingMode": "none",
-  "explorer.width": 40,
-  "explorer.icon.enableNerdfont": true,
-  "explorer.keyMappings": {
-    "i": "unmap",
-    "<tab>": "actionMenu",
-    "<Space>": "toggleSelection",
-    "k": "nodePrev",
-    "j": "nodeNext",
-    "h": "collapse",
-    "H": "gotoParent",
-    "l": ["expandable?", "expand", "open"],
-    "L": "open",
-    "J": ["toggleSelection", "nodeNext"],
-    "K": ["toggleSelection", "nodePrev"],
-    "gl": "expandRecursive",
-    "gh": "collapseRecursive",
-    "o": "expandOrCollapse",
-    "<cr>": "open",
-    "sl": "open:split",
-    "E": "open:vsplit",
-    "t": "open:tab",
-    "yp": "copyFilepath",
-    "yn": "copyFilename",
-    "yy": "copyFile",
-    "dd": "cutFile",
-    "pp": "pasteFile",
-    "dD": "deleteForever",
-    "V": "addFile",
-    "m": "addDirectory",
-    "cw": "rename",
-    ".": "toggleHidden",
-    "R": "refresh",
-    "?": "help",
-    "q": "quit",
-    "<esc>": "esc",
-    "gf": "gotoSource:file",
-    "gb": "gotoSource:buffer"
-  },
-  // html
-  "html.suggest.angular1": false, // angular1 is outdate
-
+  "coc.preferences.formatOnSaveFiletypes": [
+    "cpp",
+    "c",
+    "python",
+    "go",
+    "json"
+  ],
   // javascript
-  "javascript.referencesCodeLens.enable": true,
-  "javascript.showUnused": true,
-  "javascript.suggest.names": true,
-  "javascript.suggestionActions.enabled": true,
-  "json.format.enable": false,
-
-  // emeet
-  "emmet.showAbbreviationSuggestions": true,
-
+  "json.format.enable": true,
   // vimlsp
   "vimlsp.indexes.runtimepath": true,
   "vimlsp.indexes.gap": 10,
   "vimlsp.indexes.count": 3,
   "vimlsp.suggest.fromVimruntime": true,
   "vimlsp.suggest.fromRuntimepath": false,
-
   // languageserver
-  "languageserver": {
-    "ccls": {
-      "command": "ccls",
-      "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
-      "rootPatterns": [".root", ".project", ".ccls", ".ccls-root", "compile_commands.json", ".git/", ".hg/"],
-      "initializationOptions": {
-        "cache": {
-          "directory": "/tmp/ccls"
-        },
-        "clang": {
-          "resourceDir": "/usr/lib/clang/9.0.1"
-        }
-      }
-    },
-    "bash": {
-      "command": "bash-language-server",
-      "args": [
-        "start"
-      ],
-      "filetypes": [
-        "sh",
-        "bash"
-      ],
-      "ignoredRootPaths": []
-    }
-  }
+  "languageserver": {}
 }

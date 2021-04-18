@@ -1,40 +1,53 @@
+let g:compileCommands = {
+			\ 'c': "gcc -std=c99 -Wall -Wextra -g \"%\" -o \"%<\" -lm",
+			\ 'cpp': "g++ -Wall -Wextra -Werror -g \"%\" -o \"%<\" -lm",
+			\ 'go': "go build .",
+			\ }
+
+
 " 运行当前代码
-function! RunCode()
-  exec "w"
-  exec "set splitbelow"
-  if &filetype == 'c'
-    exec "split"
-    exec "res 10"
-    exec "terminal ./%<"
-    exec "normal i"
-  elseif &filetype == 'cpp'
-    exec "split"
-    exec "res 10"
-    exec "terminal ./%<"
-    exec "normal i"
-  elseif &filetype == 'python'
-    exec "split"
-    exec "res 10"
-    exec "terminal python3 %"
-    exec "normal i"
-  elseif &filetype == 'html'
-    exec "!vivaldi % &"
-  elseif &filetype == 'markdown'
-    exec "MarkdownPreview"
-  elseif &filetype == 'vim'
-    exec "source %"
-  endif
+function! RunFile()
+	exec "w"
+	exec "set splitbelow"
+	if &filetype == 'c' || &filetype == 'cpp' || &filetype == 'go'
+		exec "split"
+		exec "res 10"
+		exec "terminal ./%<"
+		exec "normal i"
+	elseif &filetype == 'python'
+		exec "split"
+		exec "res 10"
+		exec "terminal python3 %"
+		exec "normal i"
+	elseif &filetype == 'html'
+		exec "!firefox % &"
+	elseif &filetype == 'vim'
+		exec "source %"
+	endif
 endfunc
 
 " 编译当前代码
-function! BuildCode()
-  exec "w"
-  if &filetype == 'c'
-    exec "AsyncRun gcc -std=c99 -Wall -g \"%\" -o \"%<\" -lm"
-  elseif &filetype == 'cpp'
-    exec "AsyncRun g++ -std=c++11 -Wall -g \"%\" -o \"%<\" -lm"
-  endif
+function! CompileFile()
+	if has_key(g:compileCommands, &filetype)
+		exec "w"
+		exec "!" . g:compileCommands[&filetype]
+	endif
 endfunc
 
-nmap <LEADER>r :call RunCode()<CR>
-nmap <LEADER>b :call BuildCode()<CR>
+" 编译当前代码（异步）
+function! CompileFileAsync()
+	if has_key(g:compileCommands, &filetype)
+		exec "w"
+		exec "AsyncRun " . g:compileCommands[&filetype]
+	endif
+endfunc
+
+func! CompileAndRunFile()
+	call CompileFile()
+	call RunFile()
+endfunc
+
+nmap <LEADER>fr :call CompileAndRunFile()<CR>
+nmap <LEADER>fR :call RunFile()<CR>
+nmap <LEADER>fb :call CompileFileAsync()<CR>
+nmap <LEADER>fB :call CompileFile()<CR>

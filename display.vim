@@ -15,13 +15,13 @@ set tw=0
 set indentexpr=
 set backspace=indent,eol,start
 augroup FoldMethod
-  au BufReadPre * setlocal foldmethod=indent
-  au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+	au BufReadPre * setlocal foldmethod=indent
+	au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
 augroup END
 set foldlevel=99
 augroup NoRepeatComment
-  autocmd!
-  autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+	autocmd!
+	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 augroup END
 
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
@@ -34,7 +34,7 @@ set autochdir
 set splitright
 set splitbelow
 
-set colorcolumn=80
+set colorcolumn=100
 set virtualedit=block
 
 set guifont=Input:h13.5

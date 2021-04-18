@@ -23,12 +23,10 @@ vnoremap <Space> iw
 noremap N be
 noremap n e
 
-" 翻页
-noremap J <C-f>
-noremap K <C-b>
-
 " 快速移动
 noremap H b
+noremap J 5j
+noremap K 5k
 noremap L w
 
 " 使用 * 和 ^ 移动到行首/行尾
@@ -42,16 +40,16 @@ noremap m <nop>
 noremap ' <nop>
 vnoremap x <nop>
 
-" 使用 <LEADER> + hjkl 移动窗口
-nnoremap <LEADER>h <C-w>h
-nnoremap <LEADER>j <C-w>j
-nnoremap <LEADER>k <C-w>k
-nnoremap <LEADER>l <C-w>l
+" 使用 <LEADER>w + hjkl 移动窗口
+nnoremap <LEADER>wh <C-w>h
+nnoremap <LEADER>wj <C-w>j
+nnoremap <LEADER>wk <C-w>k
+nnoremap <LEADER>wl <C-w>l
 
-nnoremap <LEADER>H <C-w>H
-nnoremap <LEADER>J <C-w>J
-nnoremap <LEADER>K <C-w>K
-nnoremap <LEADER>L <C-w>L
+nnoremap <LEADER>wH <C-w>H
+nnoremap <LEADER>wJ <C-w>J
+nnoremap <LEADER>wK <C-w>K
+nnoremap <LEADER>wL <C-w>L
 
 " 分屏
 nnoremap sh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
@@ -89,8 +87,11 @@ inoremap <S-CR> <ESC>o
 inoremap <C-CR> <ESC>O
 
 " 切换到 Terminal-Normal mode
-tnoremap <ESC><ESC> <C-\><C-n>
+tnoremap <C-n> <C-\><C-n>
 
 " 自增/自减光标下的数字
 nnoremap _ <C-x>
 nnoremap + <C-a>
+
+" 快速打开 vimrc
+nnoremap <leader>fe :e $MYVIMRC<cr>
