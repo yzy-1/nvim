@@ -3,7 +3,7 @@
 
 ## 安装此配置后你需要做的事
 
-- [ ] 安装 `python >= 3.5`、`gcc >= 7.1`、`g++ >= 7.1`、`clangd >= 11`
+- [ ] 安装 `python >= 3.5`、`gcc >= 7`、`g++ >= 7`、`clangd >= 11`、`go >= 1.16`
 - [ ] 安装 `pynvim`（`pip install --user pynvim` 或 `pacman -S python-neovim`）
 - [ ] 安装 `nodejs` 和 `npm`，然后在终端输入 `npm install -g neovim`
 

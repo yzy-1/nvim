@@ -1,0 +1,50 @@
+#include <cmath>
+#include <cstdio>
+#include <cstring>
+#include <iostream>
+#include <numeric>
+#include <vector>
+
+using namespace std;
+
+typedef long long ll;
+typedef unsigned long long ull;
+typedef double db;
+typedef long double lf;
+
+#define rep(i, f, t) for (int i = (f), ed##i = (t); i <= ed##i; ++i)
+#define re(i, t) rep (i, 1, t)
+#define per(i, t, f) for (int i = (t), ed##i = (f); i >= ed##i; --i)
+#define each(i, x) for (auto &i : (x))
+#define dbg(x) (cerr << "(dbg) " << #x " = " << (x) << '\n')
+#define fio(x) (freopen(x ".in", "r", stdin), freopen(x ".out", "w", stdout))
+#define y1 y1__
+#define umod(x) ((x) >= mo && ((x) -= mo))
+#define outl(x) (cout << (x) << '\n')
+#define outs(x) (cout << (x) << ' ')
+#define errl(x) (cerr << (x) << '\n')
+#define errs(x) (cerr << (x) << ' ')
+
+// clang-format off
+struct Reader {
+  template<class T>Reader&operator()(T&x){x=0;T f=1;char ch=getchar();while(ch>'9'||ch<'0'){if(ch=='-')f=-1;ch=getchar();}while(ch>='0'&&ch<='9')x=x*10+ch-'0',ch=getchar();x*=f;return*this;}
+  ll operator()(){ll x;operator()(x);return x;}
+  Reader&operator()(char*x){scanf("%s",x);return*this;}
+  template<class T>Reader&operator()(vector<T>&v,int n){T x;re(i,n){operator()(x),v.push_back(x);}return*this;}
+  template<class T>Reader&operator()(T*x,int n,int st=1){rep(i,st,n){operator()(x[i]);}return*this;}
+} in;
+template<class T>T jdz(const T&a){return a>0?a:-a;}
+template<class T,class E>void up(T&a,const E&b){b>a&&(a=b);}
+template<class T,class E>void down(T&a,const E&b){b<a&&(a=b);}
+template<class T,size_t E>void fill(T(&a)[E],const int&x){memset(a,x,E*sizeof(*a));}
+ll pow(ll a,ll b,const ll&m){ll res=1;a%=m;while(b>0){if(b&1)res=res*a%m;a=a*a%m,b>>=1;}return res;}
+ll gcd(ll a,ll b){ll t;while(b!=0)t=a%b,a=b,b=t;return a;}
+ll C(ll n,ll m,ll p){if(m>n)return 0;ll x=1;re(i,m){ll a=(n+i-m)%p,b=i%p;x=x*(a*pow(b,p-2,p)%p)%p;}return x;}
+// clang-format on
+
+// Global vars{{CURSOR}}
+
+signed main() {
+	// Code here
+	return 0;
+}

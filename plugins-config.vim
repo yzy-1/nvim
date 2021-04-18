@@ -6,6 +6,11 @@ let g:asyncrun_bell = 0
 let g:asyncrun_stdin = 1
 
 " ===
+" auto-include
+" ===
+autocmd BufWritePre *.cpp :ruby CppAutoInclude::process
+
+" ===
 " AutoSudo
 " ===
 let g:suda_smart_edit = 1
@@ -119,9 +124,9 @@ let g:gitgutter_map_keys = 0
 " ===
 " IndentLine
 " ===
-let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_char = '│'
-let g:indentLine_first_char = '│'
+" let g:indentLine_showFirstIndentLevel = 1
+" let g:indentLine_char = '│'
+" let g:indentLine_first_char = '│'
 
 " ===
 " Json
@@ -162,6 +167,11 @@ let g:switch_custom_definitions = [
       \ ['0', '1'],
       \ ['+', '-'],
       \ ]
+
+" ===
+" template
+" ===
+let g:tmpl_search_paths = [$CONFIG_DIR.'/templates']
 
 " ===
 " Undotree
