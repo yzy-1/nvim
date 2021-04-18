@@ -41,6 +41,15 @@ nnoremap <M-q> :CocCommand explorer<CR>
 noremap <silent> <LEADER>p :<C-u>CocList -A --normal yank<CR>
 inoremap <silent><expr> <C-Space> coc#refresh()
 
+" 跳转到上个/下个错误
+nmap <silent> ge <Plug>(coc-diagnostic-next)
+nmap <silent> gE <Plug>(coc-diagnostic-prev)
+
+" 跳转 definition/reference
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
+
+
 " 使用 <TAB> 补全或展开 snippets
 inoremap <silent><expr> <TAB>
       \ coc#expandable() ?

@@ -1,9 +1,6 @@
 " 定义 <LEADER> 键
 let mapleader=' '
 
-" 保存 & 退出
-nnoremap <C-q> :wqa<CR>
-
 " 缩进
 nnoremap < <<
 nnoremap > >>
@@ -12,8 +9,8 @@ nnoremap > >>
 noremap - Nzz
 noremap = nzz
 noremap <LEADER><CR> :nohlsearch<CR>
-noremap # *zz
-noremap <C-#> #zz
+noremap ' *zz
+noremap <C-'> #zz
 
 " 使用 <LEADER><Space> 选中一个单词
 nnoremap <LEADER><Space> viw
@@ -70,14 +67,6 @@ nnoremap <C-r> :+tabnext<CR>
 " 跳转光标历史记录
 noremap <C-i> <C-o>
 noremap <C-o> <C-i>
-
-" 跳转到上个/下个错误
-nmap <silent> ge <Plug>(coc-diagnostic-next)
-nmap <silent> gE <Plug>(coc-diagnostic-prev)
-
-" 跳转 definition/reference
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gr <Plug>(coc-references)
 
 " 打开命令行
 noremap ; :
