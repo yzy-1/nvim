@@ -34,6 +34,9 @@ Plug 'yzy-1/vim-cpp-auto-include'
 " HTML, CSS, JavaScript, PHP, JSON, etc.
 Plug 'elzr/vim-json'
 
+" Markdown
+Plug 'dhruvasagar/vim-table-mode'
+
 call plug#end()
 
 source $CONFIG_DIR/plugins-config.vim

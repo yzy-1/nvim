@@ -1,6 +1,6 @@
 let g:compileCommands = {
-			\ 'c': "gcc -std=c99 -Wall -Wextra -g \"%\" -o \"%<\" -lm",
-			\ 'cpp': "g++ -Wall -Wextra -Werror -g \"%\" -o \"%<\" -lm",
+			\ 'c': "gcc -std=c99 -Wall -Wextra -g \"%\" -o \"%<\" -lm -fsanitize=undefined",
+			\ 'cpp': "g++ -Wall -Wextra -Werror -g \"%\" -o \"%<\" -lm -fsanitize=undefined",
 			\ 'go': "go build .",
 			\ }
 
@@ -20,7 +20,10 @@ function! RunFile()
 		exec "terminal python3 %"
 		exec "normal i"
 	elseif &filetype == 'go'
-		exec "go run ."
+		exec "split"
+		exec "res 10"
+		exec "terminal go run ."
+		exec "normal i"
 	elseif &filetype == 'html'
 		exec "!firefox % &"
 	elseif &filetype == 'vim'

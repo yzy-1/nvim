@@ -1,7 +1,7 @@
 syntax enable
 syntax on
 set number
-set relativenumber
+set norelativenumber
 set cursorline
 set noshowmode
 set ruler
@@ -36,8 +36,6 @@ set splitbelow
 
 set colorcolumn=100
 set virtualedit=block
-
-set guifont=Input:h13.5
 
 " Color scheme
 set termguicolors

@@ -65,6 +65,14 @@
 	"vimlsp.indexes.count": 3,
 	"vimlsp.suggest.fromVimruntime": true,
 	"vimlsp.suggest.fromRuntimepath": false,
+	// pairs
+	"pairs.enableCharacters": [
+		"(",
+		"[",
+		"{",
+		"'",
+		"\""
+	],
 	// languageserver
 	"languageserver": {}
 }

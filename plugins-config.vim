@@ -28,8 +28,8 @@ let c_no_curly_error = 1
 " Coc
 " ===
 let g:coc_global_extensions = [
-      \ 'coc-python', 'coc-vimlsp', 'coc-yank', 'coc-go',
-      \ 'coc-json', 'coc-clangd', 'coc-pairs' ]
+			\ 'coc-python', 'coc-vimlsp', 'coc-yank', 'coc-go',
+			\ 'coc-json', 'coc-clangd', 'coc-pairs' ]
 nmap <silent> R <Plug>(coc-rename)
 nnoremap <M-q> :CocCommand explorer<CR>
 noremap <silent> <LEADER>p :<C-u>CocList -A --normal yank<CR>
@@ -43,32 +43,38 @@ nmap <silent> gE <Plug>(coc-diagnostic-prev)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>\<tab><backspace>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+			\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " 使用 <TAB> 补全或展开 snippets
+" inoremap <silent><expr> <TAB>
+"       \ coc#expandable() ?
+"       \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+"       \ pumvisible() ? coc#_select_confirm() :
+"       \ coc#expandableOrJumpable() ?
+"       \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+"       \ <SID>checkBackSpace() ? "\<TAB>" :
+"       \ coc#refresh()
+
 inoremap <silent><expr> <TAB>
-      \ coc#expandable() ?
-      \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ?
-      \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>checkBackSpace() ? "\<TAB>" :
-      \ coc#refresh()
+			\ pumvisible() ? coc#_select_confirm() :
+			\ <SID>checkBackSpace() ? "\<TAB>" :
+			\ coc#refresh()
 
 function! s:checkBackSpace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]	=~# '\s'
 endfunction
 
-let g:coc_snippet_next = '<TAB>'
+" let g:coc_snippet_next = '<TAB>'
 
-imap <expr> <C-j>
-      \ pumvisible() ? "\<C-n>" : coc#refresh()
-imap <expr> <C-k>
-      \ pumvisible() ? "\<C-p>" : coc#refresh()
+" imap <expr> <C-j>
+"       \ pumvisible() ? "\<C-n>" : coc#refresh()
+" imap <expr> <C-k>
+"       \ pumvisible() ? "\<C-p>" : coc#refresh()
 
 " 高亮选中的单词
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Function textobj
 xmap if <Plug>(coc-funcobj-i)
@@ -80,12 +86,14 @@ omap af <Plug>(coc-funcobj-a)
 nnoremap <silent> D :call <SID>showDocumentation()<CR>
 
 function! s:showDocumentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
+	if (index(['vim','help'], &filetype) >= 0)
+		execute 'h '.expand('<cword>')
+	else
+		call CocAction('doHover')
+	endif
 endfunction
+
+autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
 
 " ===
 " Commenter
@@ -107,6 +115,7 @@ command! Lf FloatermNew lf
 command! Fzf FloatermNew fzf
 nnoremap <leader>fo :Lf<cr>
 nnoremap <leader>ff :Fzf<cr>
+let g:floaterm_opener='edit'
 
 " ===
 " FunctionList
@@ -114,7 +123,7 @@ nnoremap <leader>ff :Fzf<cr>
 nnoremap <M-w> :Vista!!<CR>
 let g:vista_default_executive = 'coc'
 autocmd FileType vista,vista_kind nnoremap <buffer> <silent>
-      \ f :<C-u>call vista#finder#fzf#Run()<CR>
+			\ f :<C-u>call vista#finder#fzf#Run()<CR>
 
 " ===
 " Git
@@ -164,9 +173,28 @@ set laststatus=2
 " ===
 let g:switch_mapping = 'sw'
 let g:switch_custom_definitions = [
-      \ ['0', '1'],
-      \ ['+', '-'],
-      \ ]
+			\ ['0', '1'],
+			\ ['+', '-'],
+			\ ]
+
+" ===
+" table-mode
+" ===
+let g:table_mode_corner='|'
+
+function! s:isAtStartOfLine(mapping)
+  let text_before_cursor = getline('.')[0 : col('.')-1]
+  let mapping_pattern = '\V' . escape(a:mapping, '\')
+  let comment_pattern = '\V' . escape(substitute(&l:commentstring, '%s.*$', '', ''), '\')
+  return (text_before_cursor =~? '^' . ('\v(' . comment_pattern . '\v)?') . '\s*\v' . mapping_pattern . '\v$')
+endfunction
+
+inoreabbrev <expr> <bar><bar>
+          \ <SID>isAtStartOfLine('\|\|') ?
+          \ '<c-o>:TableModeEnable<cr><bar><space><bar><left><left>' : '<bar><bar>'
+inoreabbrev <expr> __
+          \ <SID>isAtStartOfLine('__') ?
+          \ '<c-o>:silent! TableModeDisable<cr>' : '__'
 
 " ===
 " template
