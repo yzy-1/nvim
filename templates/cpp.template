@@ -27,11 +27,11 @@ typedef long double lf;
 
 // clang-format off
 struct Reader {
-  template<class T>Reader&operator()(T&x){x=0;T f=1;char ch=getchar();while(ch>'9'||ch<'0'){if(ch=='-')f=-1;ch=getchar();}while(ch>='0'&&ch<='9')x=x*10+ch-'0',ch=getchar();x*=f;return*this;}
-  ll operator()(){ll x;operator()(x);return x;}
-  Reader&operator()(char*x){scanf("%s",x);return*this;}
-  template<class T>Reader&operator()(vector<T>&v,int n){T x;re(i,n){operator()(x),v.push_back(x);}return*this;}
-  template<class T>Reader&operator()(T*x,int n,int st=1){rep(i,st,n){operator()(x[i]);}return*this;}
+	template<class T>Reader&operator()(T&x){x=0;T f=1;char ch=getchar();while(ch>'9'||ch<'0'){if(ch=='-')f=-1;ch=getchar();}while(ch>='0'&&ch<='9')x=x*10+ch-'0',ch=getchar();x*=f;return*this;}
+	ll operator()(){ll x;operator()(x);return x;}
+	Reader&operator()(char*x){scanf("%s",x);return*this;}
+	template<class T>Reader&operator()(vector<T>&v,int n){T x;re(i,n){operator()(x),v.push_back(x);}return*this;}
+	template<class T>Reader&operator()(T*x,int n,int st=1){rep(i,st,n){operator()(x[i]);}return*this;}
 } in;
 template<class T>T jdz(const T&a){return a>0?a:-a;}
 template<class T,class E>void up(T&a,const E&b){b>a&&(a=b);}

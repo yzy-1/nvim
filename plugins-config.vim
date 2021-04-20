@@ -109,6 +109,11 @@ vmap <LEADER>a <Plug>(EasyAlign)
 nmap <LEADER>a <Plug>(EasyAlign)
 
 " ===
+" EditorConfig
+" ===
+au FileType gitcommit,text let b:EditorConfig_disable = 1
+
+" ===
 " floaterm
 " ===
 command! Lf FloatermNew lf

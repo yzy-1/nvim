@@ -37,6 +37,9 @@ Plug 'elzr/vim-json'
 " Markdown
 Plug 'dhruvasagar/vim-table-mode'
 
+" EditorConfig
+Plug 'editorconfig/editorconfig-vim'
+
 call plug#end()
 
 source $CONFIG_DIR/plugins-config.vim

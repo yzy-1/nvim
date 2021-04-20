@@ -6,24 +6,24 @@ let g:compileCommands = {
 
 
 " 运行当前代码
-function! RunFile()
-	exec "w"
-	exec "set splitbelow"
+function! RunCode()
+	update
+	set splitbelow
 	if &filetype == 'c' || &filetype == 'cpp'
-		exec "split"
-		exec "res 10"
-		exec "terminal ./%<"
-		exec "normal i"
+		split
+		res 10
+		exec "terminal " . g:compileCommands[&filetype] . " && echo 'build successful' && time ./\"%<\""
+		normal i
 	elseif &filetype == 'python'
-		exec "split"
-		exec "res 10"
-		exec "terminal python3 %"
-		exec "normal i"
+		split
+		res 10
+		exec "terminal python3 \"%\""
+		normal i
 	elseif &filetype == 'go'
-		exec "split"
-		exec "res 10"
+		split
+		res 10
 		exec "terminal go run ."
-		exec "normal i"
+		normal i
 	elseif &filetype == 'html'
 		exec "!firefox % &"
 	elseif &filetype == 'vim'
@@ -32,28 +32,15 @@ function! RunFile()
 endfunc
 
 " 编译当前代码
-function! CompileFile()
+function! CompileCode()
 	if has_key(g:compileCommands, &filetype)
-		exec "w"
-		exec "!" . g:compileCommands[&filetype]
-	endif
-endfunc
-
-" 编译当前代码（异步）
-function! CompileFileAsync()
-	if has_key(g:compileCommands, &filetype)
-		exec "w"
+		update
 		exec "AsyncRun " . g:compileCommands[&filetype]
 	endif
 endfunc
 
-func! CompileAndRunFile()
-	call CompileFile()
-	call RunFile()
-endfunc
-
 func! ParseTask()
-	FloatermNew parse2cf
+	FloatermNew --autoclose=2 parse2cf
 endfunc
 
 func! RunTests()
@@ -65,9 +52,7 @@ func! RunTests()
 	normal i
 endfunc
 
-nmap <LEADER>fr :call CompileAndRunFile()<CR>
-nmap <LEADER>fR :call RunFile()<CR>
-nmap <LEADER>fb :call CompileFileAsync()<CR>
-nmap <LEADER>fB :call CompileFile()<CR>
+nmap <LEADER>fr :call RunCode()<CR>
+nmap <LEADER>fb :call CompileCode()<CR>
 nmap <LEADER>fp :call ParseTask()<CR>
 nmap <LEADER>ft :call RunTests()<CR>
