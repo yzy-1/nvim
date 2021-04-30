@@ -8,11 +8,12 @@ let g:compileCommands = {
 " 运行当前代码
 function! RunCode()
 	update
+	cclose
 	set splitbelow
 	if &filetype == 'c' || &filetype == 'cpp'
 		split
 		res 10
-		exec "terminal " . g:compileCommands[&filetype] . " && echo 'build successful' && time ./\"%<\""
+		exec "terminal time ./\"%<\""
 		normal i
 	elseif &filetype == 'python'
 		split

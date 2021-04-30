@@ -8,9 +8,10 @@ Plug 'theniceboy/eleline.vim'       " 状态栏
 Plug 'tpope/vim-surround'           " 提供 `成对编辑` 功能
 Plug 'AndrewRadev/switch.vim'       " 反转 true / false
 Plug 'lambdalisue/suda.vim'         " 自动 sudo
-Plug 'terryma/vim-multiple-cursors' " 多光标编辑
+" Plug 'terryma/vim-multiple-cursors' " 多光标编辑
 Plug 'ayu-theme/ayu-vim'            " 主题
 Plug 'tibabit/vim-templates'        " 自动添加模板
+Plug 'luochen1990/rainbow'
 
 " ===
 " 功能插件

@@ -41,5 +41,5 @@ set virtualedit=block
 set termguicolors
 let ayucolor="mirage"
 colorscheme ayu
-highlight CocErrorHighlight gui=undercurl guisp=red
-highlight CocWarningHighlight gui=undercurl guisp=green
+" highlight CocErrorHighlight gui=undercurl guisp=red
+" highlight CocWarningHighlight gui=undercurl guisp=green

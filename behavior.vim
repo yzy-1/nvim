@@ -29,8 +29,10 @@ set softtabstop=2
 
 " List config
 set list
-set listchars=tab:▸\
-set listchars+=trail:·
+" set listchars=tab:▸\
+" set listchars=tab:⍿·
+set listchars=tab:┊\ 
+set listchars+=trail:x
 set listchars+=nbsp:_
 
 " Search config

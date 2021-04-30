@@ -1,15 +1,18 @@
 {
 	// preferences
 	"coc.preferences.enableFloatHighlight": true,
-	// trigger
-	"suggest.noselect": false,
+	"coc.preferences.extensionUpdateCheck": "daily",
+	"coc.preferences.messageLevel": "error",
 	// diagnostic
 	"diagnostic.infoSign": "I>",
 	"diagnostic.hintSign": "H>",
 	"diagnostic.warningSign": "W>",
 	"diagnostic.errorSign": "E>",
 	"diagnostic.enable": true,
-	"diagnostic.highlightOffset": 9999999,
+	"diagnostic.highlightOffset": 1,
+	"diagnostic.checkCurrentLine": true,
+	"diagnostic.virtualText": true,
+	"diagnostic.virtualTextPrefix": " ❯❯❯ ",
 	// source
 	"coc.source.around.enable": false,
 	"coc.source.buffer.enable": false,
@@ -49,6 +52,12 @@
 	"suggest.enablePreview": true,
 	"suggest.floatEnable": true,
 	"suggest.detailField": "preview",
+	"suggest.noselect": false,
+	"suggest.enablePreselect": false,
+	"suggest.triggerAfterInsertEnter": true,
+	"suggest.autoTrigger": "always",
+	"suggest.timeout": 5000,
+	"suggest.triggerCompletionWait": 100,
 	// format
 	"coc.preferences.formatOnSaveFiletypes": [
 		"cpp",

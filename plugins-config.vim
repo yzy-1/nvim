@@ -46,16 +46,6 @@ nmap <silent> gr <Plug>(coc-references)
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 			\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-" 使用 <TAB> 补全或展开 snippets
-" inoremap <silent><expr> <TAB>
-"       \ coc#expandable() ?
-"       \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-"       \ pumvisible() ? coc#_select_confirm() :
-"       \ coc#expandableOrJumpable() ?
-"       \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-"       \ <SID>checkBackSpace() ? "\<TAB>" :
-"       \ coc#refresh()
-
 inoremap <silent><expr> <TAB>
 			\ pumvisible() ? coc#_select_confirm() :
 			\ <SID>checkBackSpace() ? "\<TAB>" :
@@ -65,16 +55,6 @@ function! s:checkBackSpace() abort
 	let col = col('.') - 1
 	return !col || getline('.')[col - 1]	=~# '\s'
 endfunction
-
-" let g:coc_snippet_next = '<TAB>'
-
-" imap <expr> <C-j>
-"       \ pumvisible() ? "\<C-n>" : coc#refresh()
-" imap <expr> <C-k>
-"       \ pumvisible() ? "\<C-p>" : coc#refresh()
-
-" 高亮选中的单词
-" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Function textobj
 xmap if <Plug>(coc-funcobj-i)
@@ -105,8 +85,9 @@ autocmd FileType c,cpp,csharp,java,go setlocal commentstring=//\ %s
 " ===
 " EasyAlign
 " ===
-vmap <LEADER>a <Plug>(EasyAlign)
+xmap <LEADER>a <Plug>(EasyAlign)
 nmap <LEADER>a <Plug>(EasyAlign)
+let g:easy_align_ignore_groups = []
 
 " ===
 " EditorConfig
@@ -166,6 +147,67 @@ let g:multi_cursor_next_key = '<C-n>'
 let g:multi_cursor_prev_key = ''
 let g:multi_cursor_skip_key = '<C-x>'
 let g:multi_cursor_quit_key = '<Esc>'
+
+" ===
+" Rainbow
+" ===
+let g:rainbow_active = 1
+let g:rainbow_conf = {
+\	'guifgs': ['cyan', 'yellow', 'lightgreen', 'lightmagenta'],
+\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+\	'guis': [''],
+\	'cterms': [''],
+\	'operators': '_,_',
+\	'contains_prefix': 'TOP',
+\	'parentheses_options': '',
+\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+\	'separately': {
+\		'*': {},
+\		'markdown': {
+\			'parentheses_options': 'containedin=markdownCode contained',
+\		},
+\		'lisp': {
+\			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+\		},
+\		'haskell': {
+\			'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/\v\{\ze[^-]/ end=/}/ fold'],
+\		},
+\		'ocaml': {
+\			'parentheses': ['start=/(\ze[^*]/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/\[|/ end=/|\]/ fold', 'start=/{/ end=/}/ fold'],
+\		},
+\		'tex': {
+\			'parentheses_options': 'containedin=texDocZone',
+\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+\		},
+\		'vim': {
+\			'parentheses_options': 'containedin=vimFuncBody,vimExecute',
+\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold'],
+\		},
+\		'xml': {
+\			'syn_name_prefix': 'xmlRainbow',
+\			'parentheses': ['start=/\v\<\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'))?)*\>/ end=#</\z1># fold'],
+\		},
+\		'xhtml': {
+\			'parentheses': ['start=/\v\<\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'))?)*\>/ end=#</\z1># fold'],
+\		},
+\		'html': {
+\			'parentheses': ['start=/\v\<((script|style|area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+\		},
+\		'perl': {
+\			'syn_name_prefix': 'perlBlockFoldRainbow',
+\		},
+\		'php': {
+\			'syn_name_prefix': 'phpBlockRainbow',
+\			'contains_prefix': '',
+\			'parentheses': ['start=/(/ end=/)/ containedin=@htmlPreproc contains=@phpClTop', 'start=/\[/ end=/\]/ containedin=@htmlPreproc contains=@phpClTop', 'start=/{/ end=/}/ containedin=@htmlPreproc contains=@phpClTop', 'start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold contains_prefix=TOP'],
+\		},
+\		'stylus': {
+\			'parentheses': ['start=/{/ end=/}/ fold contains=@colorableGroup'],
+\		},
+\		'css': 0,
+\		'sh': 0,
+\	}
+\}
 
 " ===
 " Status line
