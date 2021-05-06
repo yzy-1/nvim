@@ -11,7 +11,7 @@ Plug 'lambdalisue/suda.vim'         " 自动 sudo
 " Plug 'terryma/vim-multiple-cursors' " 多光标编辑
 Plug 'ayu-theme/ayu-vim'            " 主题
 Plug 'tibabit/vim-templates'        " 自动添加模板
-Plug 'luochen1990/rainbow'
+Plug 'luochen1990/rainbow'          " 彩虹括号
 
 " ===
 " 功能插件
@@ -40,6 +40,9 @@ Plug 'dhruvasagar/vim-table-mode'
 
 " EditorConfig
 Plug 'editorconfig/editorconfig-vim'
+
+" Go
+Plug 'fatih/vim-go'
 
 call plug#end()
 
