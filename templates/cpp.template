@@ -1,4 +1,3 @@
-#include <cmath>
 #include <cstdio>
 #include <cstring>
 #include <iostream>
@@ -15,11 +14,15 @@ typedef long double lf;
 #define rep(i, f, t) for (int i = (f), ed##i = (t); i <= ed##i; ++i)
 #define re(i, t) rep (i, 1, t)
 #define per(i, t, f) for (int i = (t), ed##i = (f); i >= ed##i; --i)
+#define ste(i, f, t, s) for (int i = (f), ed##i = (t); i <= ed##i; i += s)
 #define each(i, x) for (auto &i : (x))
+#define nx(i, f) for (int i = h[f]; i; i = e[i].n)
+#define nxt(i, f, g) for (int i = g.h[f]; i; i = g.e[i].n)
 #define dbg(x) (cerr << "(dbg) " << #x " = " << (x) << '\n')
 #define fio(x) (freopen(x ".in", "r", stdin), freopen(x ".out", "w", stdout))
 #define y1 y1__
 #define umod(x) ((x) >= mo && ((x) -= mo))
+#define dmod(x) ((x) < 0 && ((x) += mo))
 #define outl(x) (cout << (x) << '\n')
 #define outs(x) (cout << (x) << ' ')
 #define errl(x) (cerr << (x) << '\n')
@@ -31,15 +34,16 @@ struct Reader {
 	ll operator()(){ll x;operator()(x);return x;}
 	Reader&operator()(char*x){scanf("%s",x);return*this;}
 	template<class T>Reader&operator()(vector<T>&v,int n){T x;re(i,n){operator()(x),v.push_back(x);}return*this;}
-	template<class T>Reader&operator()(T*x,int n,int st=1){rep(i,st,n){operator()(x[i]);}return*this;}
+	template<class T>Reader&operator()(T*x,const int&n,const int&st=1){rep(i,st,n){operator()(x[i]);}return*this;}
 } in;
-template<class T>T jdz(const T&a){return a>0?a:-a;}
-template<class T,class E>void up(T&a,const E&b){a<b&&(a=b);}
-template<class T,class E>void down(T&a,const E&b){b<a&&(a=b);}
-template<class T,size_t E>void fill(T(&a)[E],const int&x){memset(a,x,E*sizeof(*a));}
-ll pow(ll a,ll b,const ll&m){ll res=1;a%=m;while(b>0){if(b&1)res=res*a%m;a=a*a%m,b>>=1;}return res;}
+template<class T>T Abs(const T&a){return a>0?a:-a;}
+template<class T,class E>void Up(T&a,const E&b){a<b&&(a=b);}
+template<class T,class E>void Down(T&a,const E&b){b<a&&(a=b);}
+template<class T,size_t E>void Fill(T(&a)[E],const int&x){memset(a,x,E*sizeof(*a));}
+ll Pow(ll a,ll b,const ll&m){ll res=1;a%=m;while(b>0){if(b&1)res=res*a%m;a=a*a%m,b>>=1;}return res;}
 ll gcd(ll a,ll b){ll t;while(b!=0)t=a%b,a=b,b=t;return a;}
-ll C(ll n,ll m,ll p){if(m>n)return 0;ll x=1;re(i,m){ll a=(n+i-m)%p,b=i%p;x=x*(a*pow(b,p-2,p)%p)%p;}return x;}
+ll C(ll n,ll m){if(m>n)return 0;ll a=1;re(i,m)a*=(n-i+1),a/=i;return a;}
+ll C(ll n,ll m,ll p){if(m>n)return 0;ll x=1;re(i,m){ll a=(n+i-m)%p,b=i%p;x=x*(a*Pow(b,p-2,p)%p)%p;}return x;}
 // clang-format on
 
 // Global vars{{CURSOR}}
