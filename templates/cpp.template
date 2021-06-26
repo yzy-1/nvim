@@ -16,17 +16,18 @@ typedef long double lf;
 #define per(i, t, f) for (int i = (t), ed##i = (f); i >= ed##i; --i)
 #define ste(i, f, t, s) for (int i = (f), ed##i = (t); i <= ed##i; i += s)
 #define each(i, x) for (auto &i : (x))
-#define nx(i, f) for (int i = h[f]; i; i = e[i].n)
 #define nxt(i, f, g) for (int i = g.h[f]; i; i = g.e[i].n)
 #define dbg(x) (cerr << "(dbg) " << #x " = " << (x) << '\n')
 #define fio(x) (freopen(x ".in", "r", stdin), freopen(x ".out", "w", stdout))
-#define y1 y1__
+#define up(x, y) (((x) < (y)) && ((x) = (y)))
+#define down(x, y) (((x) > (y)) && ((x) = (y)))
 #define umod(x) ((x) >= mo && ((x) -= mo))
 #define dmod(x) ((x) < 0 && ((x) += mo))
 #define outl(x) (cout << (x) << '\n')
 #define outs(x) (cout << (x) << ' ')
 #define errl(x) (cerr << (x) << '\n')
 #define errs(x) (cerr << (x) << ' ')
+#define y1 y1__
 
 // clang-format off
 struct Reader {
@@ -37,8 +38,6 @@ struct Reader {
 	template<class T>Reader&operator()(T*x,const int&n,const int&st=1){rep(i,st,n){operator()(x[i]);}return*this;}
 } in;
 template<class T>T Abs(const T&a){return a>0?a:-a;}
-template<class T,class E>void Up(T&a,const E&b){a<b&&(a=b);}
-template<class T,class E>void Down(T&a,const E&b){b<a&&(a=b);}
 template<class T,size_t E>void Fill(T(&a)[E],const int&x){memset(a,x,E*sizeof(*a));}
 ll Pow(ll a,ll b,const ll&m){ll res=1;a%=m;while(b>0){if(b&1)res=res*a%m;a=a*a%m,b>>=1;}return res;}
 ll gcd(ll a,ll b){ll t;while(b!=0)t=a%b,a=b,b=t;return a;}
