@@ -50,6 +50,7 @@ inoremap <silent><expr> <TAB>
 			\ pumvisible() ? coc#_select_confirm() :
 			\ <SID>checkBackSpace() ? "\<TAB>" :
 			\ coc#refresh()
+inoremap <silent><expr> <c-space> coc#refresh()
 
 function! s:checkBackSpace() abort
 	let col = col('.') - 1

@@ -1,6 +1,6 @@
 let g:compileCommands = {
 			\ 'c': "gcc -std=c99 -Wall -g \"%\" -o \"%<\" -lm -fsanitize=undefined",
-			\ 'cpp': "g++ -Wall -g \"%\" -o \"%<\" -lm -fsanitize=undefined",
+			\ 'cpp': "g++ -Wall -g \"%\" -o \"%<\" -lm -fsanitize=undefined -march=native",
 			\ 'go': "go build .",
 			\ }
 
