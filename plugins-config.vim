@@ -28,7 +28,7 @@ let c_no_curly_error = 1
 " Coc
 " ===
 let g:coc_global_extensions = [
-			\ 'coc-python', 'coc-vimlsp', 'coc-yank', 'coc-go',
+			\ 'coc-jedi', 'coc-vimlsp', 'coc-yank', 'coc-go',
 			\ 'coc-json', 'coc-clangd', 'coc-pairs', 'coc-highlight' ]
 nmap <silent> R <Plug>(coc-rename)
 nnoremap <M-q> :CocCommand explorer<CR>

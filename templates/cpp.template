@@ -20,6 +20,7 @@ typedef long double lf;
 #define up(x, y) (((x) < (y)) && ((x) = (y)))
 #define down(x, y) (((x) > (y)) && ((x) = (y)))
 #define y1 y1__
+#define fio(x) (freopen(x ".in", "r", stdin), freopen(x ".out", "w", stdout))
 
 // clang-format off
 namespace FastIO {
@@ -40,7 +41,8 @@ namespace FastIO {
 		~O(){Flush();}
 		inline void Flush(){fwrite(obuf,1,oS-obuf,fi),oS=obuf;}
 		inline O&operator()(char x){*oS++=x;if(oS==oT)Flush();return*this;}
-		inline O&operator()(const char*s){int len=strlen(s);for(f=0;f<len;++f)operator()(s[f]);return*this;}
+		inline O&operator()(char*s){int len=strlen(s);for(f=0;f<len;++f)operator()(s[f]);return*this;}
+		inline O&operator()(const char*s){return operator()((char*)s);}
 		template<class T>inline O&operator()(T x){if(!x)operator()('0');if(x<0)operator()('-'),x=-x;while(x)qu[++qr]=x%10+'0',x/=10;while(qr)operator()(qu[qr--]);return*this;}
 		template<class T>O&operator()(T*x,const int&n,const char&ed=' ',const int&st=1){rep(i,st,n)operator()(x[i])(ed);return*this;}
 	} out(stdout);

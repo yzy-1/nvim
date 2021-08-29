@@ -1,6 +1,3 @@
-" 定义 <LEADER> 键
-let mapleader=' '
-
 " 缩进
 nnoremap < <<
 nnoremap > >>
@@ -48,22 +45,6 @@ nnoremap <LEADER>wJ <C-w>J
 nnoremap <LEADER>wK <C-w>K
 nnoremap <LEADER>wL <C-w>L
 
-" 分屏
-nnoremap sh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
-nnoremap sj :set splitbelow<CR>:split<CR>
-nnoremap sk :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
-nnoremap sl :set splitright<CR>:vsplit<CR>
-
-" 改变窗口大小
-nnoremap <C-k> :res +5<CR>
-nnoremap <C-j> :res -5<CR>
-nnoremap <C-h> :vertical resize-5<CR>
-nnoremap <C-l> :vertical resize+5<CR>
-
-" 移动到上个/下个 Tab
-nnoremap <C-e> :-tabnext<CR>
-nnoremap <C-r> :+tabnext<CR>
-
 " 跳转光标历史记录
 noremap <C-i> <C-o>
 noremap <C-o> <C-i>
@@ -71,16 +52,10 @@ noremap <C-o> <C-i>
 " 打开命令行
 noremap ; :
 
-" 在当前行上/下插入新行
-inoremap <S-CR> <ESC>o
-inoremap <C-CR> <ESC>O
-
-" 切换到 Terminal-Normal mode
-tnoremap <C-n> <C-\><C-n>
-
 " 自增/自减光标下的数字
 nnoremap _ <C-x>
 nnoremap + <C-a>
 
-" 快速打开 vimrc
-nnoremap <leader>fe :e $MYVIMRC<cr>
+nnoremap U <c-r>
+nmap <leader>c gcc
+vmap <leader>c gc
